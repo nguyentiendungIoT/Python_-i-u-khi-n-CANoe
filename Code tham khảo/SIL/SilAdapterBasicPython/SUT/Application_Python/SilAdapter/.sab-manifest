@@ -1,0 +1,26 @@
+SilAdapterManifest.Version=1.0.0
+# This file was automatically generated. All files listed will be deleted if the
+# generator reruns. Changing the file may cause the SIL Adapter generator to fail.
+__init__.py
+RoomTemperatureControl/distributed_objects.py
+RoomTemperatureControl/ISensor_module.py
+RoomTemperatureControl/IHeating_module.py
+RoomTemperatureControl/__init__.py
+RoomTemperatureControl/State_module.py
+RoomTemperatureControl/encodings.py
+RoomTemperatureControl/methods.py
+_vector_typelib/typelib_common.py
+_vector_typelib/typelib_data_member.py
+_vector_typelib/typelib_event_member.py
+_vector_typelib/typelib_field_member.py
+_vector_typelib/typelib_do.py
+_vector_typelib/typelib_cla_service.py
+_vector_typelib/typelib_base_datatypes.py
+_vector_typelib/typelib_encodings.py
+_vector_typelib/cla_check.py
+_vector_typelib/__init__.py
+_vector_typelib/typelib_method_member.py
+_vector_typelib/typelib_container.py
+_vector_typelib/typelib_embedded_container.py
+siladapter.py
+README.md

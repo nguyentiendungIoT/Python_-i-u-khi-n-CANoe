@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FunctionBusLibrary Version="44" FormatMajorVersion="3">
+  <Namespaces>
+    <Namespace IsDefinedAsHidden="False" IsSystemDefined="False" Name="Panel">
+      <Subnamespaces>
+        <Namespace IsDefinedAsHidden="False" IsSystemDefined="False" Name="_Internal">
+          <DataTypes>
+            <IntegerDataType IsSigned="False" BitCount="1" HasFixedBinaryLayout="True" HasMotorolaByteOrder="False" Name="Bool" />
+          </DataTypes>
+        </Namespace>
+      </Subnamespaces>
+      <DOInterfaces>
+        <DOInterface IsAbstract="False" Name="IPanel">
+          <AttributeValues>
+            <AttributeValue Definition="_SystemAttributes::Binding" InitialValue="Abstract" InitialValueType="String" />
+          </AttributeValues>
+          <MemberData>
+            <DOMemberDataHolder Name="MemberData">
+              <Data>
+                <DOIFMemberData Name="EnvironmentSimulationActive">
+                  <InitialValues>
+                    <InitialValue Value="0" ValueType="UInt32" />
+                  </InitialValues>
+                </DOIFMemberData>
+              </Data>
+            </DOMemberDataHolder>
+          </MemberData>
+          <DataMembers>
+            <DOIFDataMember LocalDirection="Internal" Name="AverageTemperature">
+              <DataType DataType="_SystemDataTypes::Double" />
+            </DOIFDataMember>
+            <DOIFDataMember LocalDirection="Internal" Name="EnvironmentSimulationActive">
+              <DataType DataType="Panel::_Internal::Bool">
+                <NumericProperties MinValue="" MinValueType="Invalid" MaxValue="" MaxValueType="Invalid" IsBoolean="True" IsTimespan="False" />
+              </DataType>
+            </DOIFDataMember>
+            <DOIFDataMember LocalDirection="Internal" Name="Heating">
+              <DataType DataType="_SystemDataTypes::Int32" />
+            </DOIFDataMember>
+          </DataMembers>
+        </DOInterface>
+      </DOInterfaces>
+      <DistributedObjects>
+        <DistributedObject GenerateDotNetAPI="True" Name="Panel">
+          <DataType>
+            <ModifiedDOIF Reverse="False" IsDOReference="False" Interface="Panel::IPanel" />
+          </DataType>
+          <MemberData>
+            <DOMemberDataHolder Name="MemberData" />
+          </MemberData>
+        </DistributedObject>
+      </DistributedObjects>
+    </Namespace>
+  </Namespaces>
+</FunctionBusLibrary>

@@ -1,0 +1,123 @@
+﻿{
+  "version": 3,
+  
+  "configurePresets": [
+    {
+      "name": "c-mixin_debug",
+      "hidden": true,
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug" }
+    },
+    {
+      "name": "c-mixin_release",
+      "hidden": true,
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" }
+    },
+
+    {
+      "name": "linux-debug",
+      "displayName": "Linux Debug",
+      "description": "Target the Windows Subsystem for Linux (WSL) or a remote Linux system.",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/_build/${presetName}",
+      "installDir": "${sourceDir}/_install/${presetName}",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug" },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      },
+      "vendor": { "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": { "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}" } }
+    },
+
+    {
+      "name": "c-base_vs-ninja",
+      "description": "Visual Studio with Ninja on Windows",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/_build/${presetName}",
+      "installDir": "${sourceDir}/_install/${presetName}",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "cl.exe",
+        "CMAKE_CXX_COMPILER": "cl.exe"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+
+    {
+      "name": "c-mixin_vs-x64",
+      "description": "Visual Studio x64 and SIL Kit x86_64",
+      "hidden": true,
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "SILKIT_DIRECTORY": "${sourceDir}/SilKit-4.0.5-Win-x86_64-VS2017"
+      }
+    },
+    {
+      "name": "c-mixin_vs-x86",
+      "description": "Visual Studio x86 and SIL Kit x86",
+      "hidden": true,
+      "architecture": {
+        "value": "x86",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "SILKIT_DIRECTORY": "${sourceDir}/SilKit-4.0.5-Win-x86-VS2017"
+      }
+    },
+
+    {
+      "name": "vs-ninja-x64-debug",
+      "displayName": "x64 Debug",
+      "description": "Target Windows (64-bit) with the Visual Studio development environment. (Debug)",
+      "inherits": ["c-base_vs-ninja", "c-mixin_vs-x64", "c-mixin_debug"]
+    },
+    {
+      "name": "vs-ninja-x64-release",
+      "displayName": "x64 Release",
+      "description": "Target Windows (64-bit) with the Visual Studio development environment. (Release)",
+      "inherits": ["c-base_vs-ninja", "c-mixin_vs-x64", "c-mixin_release"]
+    },
+    {
+      "name": "vs-ninja-x86-debug",
+      "displayName": "x86 Debug",
+      "description": "Target Windows (32-bit) with the Visual Studio development environment. (Debug)",
+      "inherits": ["c-base_vs-ninja", "c-mixin_vs-x86", "c-mixin_debug"]
+    },
+    {
+      "name": "vs-ninja-x86-release",
+      "displayName": "x86 Release",
+      "description": "Target Windows (32-bit) with the Visual Studio development environment. (Release)",
+      "inherits": ["c-base_vs-ninja", "c-mixin_vs-x86", "c-mixin_release"]
+    }
+  ],
+
+  "buildPresets": [
+    {
+      "name": "vs-ninja-x64-debug",
+      "displayName": "x64 Debug",
+      "configurePreset": "vs-ninja-x64-debug"
+    },
+    {
+      "name": "vs-ninja-x64-release",
+      "displayName": "x64 Release",
+      "configurePreset": "vs-ninja-x64-release"
+    },
+    {
+      "name": "vs-ninja-x86-debug",
+      "displayName": "x86 Debug",
+      "configurePreset": "vs-ninja-x86-debug"
+    },
+    {
+      "name": "vs-ninja-x86-release",
+      "displayName": "x86 Release",
+      "configurePreset": "vs-ninja-x86-release"
+    }
+  ]
+}

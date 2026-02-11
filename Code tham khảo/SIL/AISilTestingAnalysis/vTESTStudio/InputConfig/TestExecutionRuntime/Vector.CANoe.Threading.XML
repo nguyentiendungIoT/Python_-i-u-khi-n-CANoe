@@ -1,0 +1,2017 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Vector.CANoe.Threading</name>
+    </assembly>
+    <members>
+        <member name="T:Vector.CANoe.Threading.ICriterion">
+            <summary>
+            Interface for a criterion. A criterion represents a state which can be
+            evaluated; for this certain state the criterion is true, for other states,
+            it is false. A criterion is used e.g. to wait for the state represented by it.
+            You will probably have no need to use the interface class itself.
+            </summary>
+        </member>
+        <member name="M:Vector.CANoe.Threading.ICriterion.Evaluate">
+            <summary>
+            Evaluates the state. Called by the CANoe runtime.
+            </summary>
+            <returns>Greater than 0 if the state is reached; else 0.</returns>
+            <remarks>The return code may be used to identify the concrete subcriterion
+            which was fulfilled for composite criteria.</remarks>
+        </member>
+        <member name="M:Vector.CANoe.Threading.ICriterion.GetHandlerTypes">
+            <summary>
+            This is an internal method. It informs the CANoe runtime about the
+            events for which the criterion shall be evaluated.
+            </summary>
+            <returns>returns a list of runtime values.</returns>
+        </member>
+        <member name="M:Vector.CANoe.Threading.ICriterion.GetTimerHandlers">
+            <summary>
+            This is an internal method. It informs the CANoe runtime about the
+            events for which the criterion shall be evaluated.
+            </summary>
+            <returns>For internal use only.</returns>
+        </member>
+        <member name="M:Vector.CANoe.Threading.ICriterion.GetDynamicHandlerTypes">
+            <summary>
+            This is an internal method. It informs the CANoe runtime about the
+            events for which the criterion shall be evaluated.
+            </summary>
+            <returns>For internal use only.</returns>
+        </member>
+        <member name="P:Vector.CANoe.Threading.ICriterion.Description">
+            <summary>
+            Description of the criterion. The description is 
+            used for the reporting of the TFS.
+            </summary>
+        </member>
+        <member name="T:Vector.CANoe.Threading.ICriterion40">
+            <summary>
+            This is an internal interface used by the CANoe runtime to identify criteria
+            which may need to listen for value updates instead of changes or for user event names.
+            </summary>
+        </member>
+        <member name="P:Vector.CANoe.Threading.ICriterion40.RegisterForUpdates">
+            <summary>
+            This is an internal property. It tells the CANoe runtime whether it needs
+            to listen for updates of the runtime values when registering event handlers.
+            </summary>
+        </member>
+        <member name="M:Vector.CANoe.Threading.ICriterion40.GetUserEventNames(Vector.CANoe.Runtime.Internal.IWaitingContext)">
+            <summary>
+            Internal method. You should never use it yourself.
+            </summary>
+            <param name="context">For internal use only.</param>
+            <returns>For internal use only.</returns>
+        </member>
+        <member name="T:Vector.CANoe.Threading.CriterionBase">
+            <summary>
+            Base class for a criterion.
+            You should normally not use the base class itself directly.
+            </summary>
+        </member>
+        <member name="M:Vector.CANoe.Threading.CriterionBase.Evaluate">
+            <summary>
+            Evaluates the state. Called by the CANoe runtime.
+            </summary>
+            <returns>Greater than 0 if the state is reached; else 0.</returns>
+            <remarks>The return code may be used to identify the concrete subcriterion
+            which was fulfilled for composite criteria.</remarks>
+        </member>
+        <member name="M:Vector.CANoe.Threading.CriterionBase.Evaluate(Vector.CANoe.Runtime.IFrame)">
+            <summary>
+            Evaluates the state. Called by the CANoe runtime; used for criteria
+            which react on frames.
+            </summary>
+            <param name="frame">frame which was received</param>
+            <returns>Greater than 0 if the state is reached; else 0.</returns>
+            <remarks>The return code may be used to identify the concrete subcriterion
+            which was fulfilled for composite criteria.</remarks>
+        </member>
+        <member name="M:Vector.CANoe.Threading.CriterionBase.EvaluateWaitStarts">
+            <summary>
+            Evaluates the state on start of a wait call. Called by the CANoe runtime.
+            </summary>
+            <returns>Greater than 0 if the state is reached; else 0.</returns>
+            <remarks>The return code may be used to identify the concrete subcriterion
+            which was fulfilled for composite criteria.</remarks>
+        </member>
+        <member name="M:Vector.CANoe.Threading.CriterionBase.GetHandlerTypes">
+            <summary>
+            This is an internal method. It informs the CANoe runtime about the
+            events for which the criterion shall be evaluated.
+            </summary>
+            <returns>For internal use only.</returns>
+        </member>
+        <member name="M:Vector.CANoe.Threading.CriterionBase.GetTimerHandlers">
+            <summary>
+            This is an internal method. It informs the CANoe runtime about the
+            events for which the criterion shall be evaluated.
+            </summary>
+            <returns>For internal use only.</returns>
+        </member>
+        <member name="M:Vector.CANoe.Threading.CriterionBase.GetDynamicHandlerTypes">
+            <summary>
+            This is an internal method. It informs the CANoe runtime about the
+            events for which the criterion shall be evaluated.
+            </summary> 
+            <returns>For internal use only.</returns>
+        </member>
+        <member name="M:Vector.CANoe.Threading.CriterionBase.GetFrames">
+            <summary>
+            This is an internal method. It informs the CANoe runtime about the
+            frames for which the criterion shall be evaluated.
+            </summary>
+            <returns>For internal use only.</returns>
+        </member>
+        <member name="P:Vector.CANoe.Threading.CriterionBase.Description">
+            <summary>
+            See ICriterion.
+            </summary>
+        </member>
+        <member name="T:Vector.CANoe.Threading.Relation">
+            <summary>
+            Relations for the state of a certain value.
+            </summary>
+        </member>
+        <member name="F:Vector.CANoe.Threading.Relation.Less">
+            <summary>
+            The current value must be less than a fixed value.
+            </summary>
+        </member>
+        <member name="F:Vector.CANoe.Threading.Relation.LessOrEqual">
+            <summary>
+            The current value must be less than or equal to a fixed value.
+            </summary>
+        </member>
+        <member name="F:Vector.CANoe.Threading.Relation.Equal">
+            <summary>
+            The current value must be equal to a fixed value.
+            </summary>
+        </member>
+        <member name="F:Vector.CANoe.Threading.Relation.UnEqual">
+            <summary>
+            The current value must not be equal to a fixed value.
+            </summary>
+        </member>
+        <member name="F:Vector.CANoe.Threading.Relation.GreaterOrEqual">
+            <summary>
+            The current value must be greater or equal to a fixed value.
+            </summary>
+        </member>
+        <member name="F:Vector.CANoe.Threading.Relation.Greater">
+            <summary>
+            The current value must be greater than a fixed value.
+            </summary>
+        </member>
+        <member name="T:Vector.CANoe.Threading.ValueCriterionBase">
+            <summary>
+            Helper base class for criteria which check the current value of a 
+            signal, environment variable or system variable.
+            </summary>
+        </member>
+        <member name="M:Vector.CANoe.Threading.ValueCriterionBase.#ctor(System.Double)">
+            <summary>
+            Constructor. As relation, equality is assumed.
+            </summary>
+            <param name="value">Value to which the current value must be equal.</param>
+        </member>
+        <member name="M:Vector.CANoe.Threading.ValueCriterionBase.#ctor(Vector.CANoe.Threading.Relation,System.Double)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="relation">Relation between current value and given value.</param>
+            <param name="value">Value to which the current value must have the
+            given relation.</param>
+        </member>
+        <member name="M:Vector.CANoe.Threading.ValueCriterionBase.RelationToString(Vector.CANoe.Threading.Relation)">
+            <summary>
+            Internal helper for reporting.
+            </summary>
+            <param name="relation">A relation</param>
+            <returns>String representation of that relation</returns>
+        </member>
+        <member name="M:Vector.CANoe.Threading.ValueCriterionBase.CompareDouble(System.Double,System.Double)">
+            <summary>
+            Internal helper to perform safe floating point comparison.
+            </summary>
+            <param name="lhs">left hand side of comparison</param>
+            <param name="rhs">right hand side of comparison</param>
+            <returns>value indicating whether lhs is less than, equal to or greater than rhs</returns>
+        </member>
+        <member name="M:Vector.CANoe.Threading.ValueCriterionBase.Evaluate(System.Double)">
+            <summary>
+            Internal helper to check the value condition
+            </summary>
+            <param name="currentValue">Physical value of the signal</param>
+            <returns>1 if the relation is fulfilled, else 0.</returns>
+        </member>
+        <member name="P:Vector.CANoe.Threading.ValueCriterionBase.Description">
+            <summary>
+            Description of the criterion. The description is 
+            used for the reporting of the TFS.
+            </summary>
+        </member>
+        <member name="P:Vector.CANoe.Threading.ValueCriterionBase.ParameterDescription">
+            <summary>
+            Returns a description of the type which is examined.
+            </summary>
+        </member>
+        <member name="T:Vector.CANoe.Threading.ValueCriterion`1">
+            <summary>
+            Represents a simple criterion which can be used to check the current value
+            of a signal, environment variable or system variable. 
+            </summary>
+            <remarks>
+            You may designate a relation between the current value and a fixed value.
+            If you do not, the value will be checked for equality. The actual checking
+            allows an small (epsilon) value range around the current value where it is
+            still assumed to be equal to the fixed value. This behavior is necessary
+            because of rounding and representation errors inherent to computer processing
+            of floating point values.
+            </remarks>
+            <typeparam name="T">The signal, environment variable or system variable
+            whose value shall be checked.</typeparam>
+            <example>
+            <code source="..\Build Documentation\ThreadingExamples.cs" region="ValueCriterion" />
+            </example>
+            <seealso cref="T:Vector.CANoe.Threading.CriterionBase" />
+            <seealso cref="T:Vector.CANoe.Threading.Relation" />
+        </member>
+        <member name="M:Vector.CANoe.Threading.ValueCriterion`1.#ctor(System.Double)">
+            <summary>
+            Constructor. As relation, equality is assumed.
+            </summary>
+            <param name="value">Value to which the current value must be equal.</param>
+        </member>
+        <member name="M:Vector.CANoe.Threading.ValueCriterion`1.#ctor(Vector.CANoe.Threading.Relation,System.Double)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="relation">Relation between current value and given value.</param>
+            <param name="value">Value to which the current value must have the
+            given relation.</param>
+        </member>
+        <member name="M:Vector.CANoe.Threading.ValueCriterion`1.Evaluate">
+            <summary>
+            Checks whether the relation between the current value of the signal, 
+            environment variable or system variable and the given value is 
+            fulfilled.
+            </summary>
+            <returns>1 if the relation is fulfilled, else 0.</returns>
+        </member>
+        <member name="M:Vector.CANoe.Threading.ValueCriterion`1.EvaluateWaitStarts">
+            <summary>Checks whether the relation between the current value of the signal, 
+            environment variable or system variable and the given value is 
+            fulfilled. Only used on start of wait conditions. The signal has to be on the
+            bus once in the current measurement session.
+            </summary>
+            <returns>1 if the relation is fulfilled, else 0.</returns>
+        </member>
+        <member name="M:Vector.CANoe.Threading.ValueCriterion`1.GetHandlerTypes">
+            <summary>
+            See CriterionBase for an explanation. 
+            </summary>
+            <returns>A list of handler types.</returns>
+        </member>
+        <member name="P:Vector.CANoe.Threading.ValueCriterion`1.Description">
+            <summary>
+            Description of the criterion. The description is 
+            used for the reporting of the TFS.
+            </summary>
+            <returns>The description.</returns>
+        </member>
+        <member name="P:Vector.CANoe.Threading.ValueCriterion`1.ParameterDescription">
+            <summary>
+            Returns a description of the type which is examined.
+            </summary>
+        </member>
+        <member name="T:Vector.CANoe.Threading.ValueEntityCriterionBase">
+            <summary>
+            Base class for criteria checking value entity state.
+            </summary>
+        </member>
+        <member name="M:Vector.CANoe.Threading.ValueEntityCriterionBase.#ctor(Vector.CANoe.Runtime.IValueEntityBase)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="valueEntity">Value entity to wait for.</param>
+        </member>
+        <member name="M:Vector.CANoe.Threading.ValueEntityCriterionBase.EvaluateWaitStarts">
+            <summary>Checks whether the relation between the current value of the value
+            entity and the given value is fulfilled. Only used on start of wait conditions.
+            The signal has to be on the bus once in the current measurement session.
+            </summary>
+            <returns>1 if the relation is fulfilled, else 0.</returns>
+        </member>
+        <member name="M:Vector.CANoe.Threading.ValueEntityCriterionBase.GetDynamicHandlerTypes">
+            <summary>
+            See CriterionBase for an explanation. 
+            </summary>
+            <returns>A list of handler types.</returns>
+        </member>
+        <member name="P:Vector.CANoe.Threading.ValueEntityCriterionBase.Description">
+            <summary>
+            Description of the criterion. The description is 
+            used for the reporting of the TFS.
+            </summary>
+        </member>
+        <member name="T:Vector.CANoe.Threading.ValueEntityCriterion">
+            <summary>
+            Represents a simple criterion which can be used to check the current value
+            of a value entity. 
+            </summary>
+            <remarks>
+            You may designate a relation between the current value and a fixed value.
+            If you do not, the value will be checked for equality. Complex data types
+            are compared element by element in the order of declaration and depth
+            first and the first inequality of a primitive element determines the
+            overall inequality of the complex data type. In case of array data types
+            a difference in the array length will be evaluated first and in case of
+            unions the union selector will be evaluated first.
+            </remarks>
+            <seealso cref="T:Vector.CANoe.Threading.ValueEntityCriterionBase" />
+            <seealso cref="T:Vector.CANoe.Threading.CriterionBase" />
+            <seealso cref="T:Vector.CANoe.Threading.Relation" />
+        </member>
+        <member name="M:Vector.CANoe.Threading.ValueEntityCriterion.#ctor(Vector.CANoe.Runtime.IValueEntityBase,System.Object)">
+            <summary>
+            Constructor. As relation, equality is assumed.
+            </summary>
+            <param name="valueEntity">Value entity to wait for.</param>
+            <param name="value">Value to which the current value must be equal.</param>
+        </member>
+        <member name="M:Vector.CANoe.Threading.ValueEntityCriterion.#ctor(Vector.CANoe.Runtime.IValueEntityBase,Vector.CANoe.Threading.Relation,System.Object)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="valueEntity">Value entity to wait for.</param>
+            <param name="relation">Relation between current value and given value.</param>
+            <param name="value">Value to which the current value must have the
+            given relation.</param>
+        </member>
+        <member name="M:Vector.CANoe.Threading.ValueEntityCriterion.Evaluate">
+            <summary>
+            Checks whether the relation between the current value of the value
+            entity and the given value is fulfilled.
+            </summary>
+            <returns>1 if the relation is fulfilled, else 0.</returns>
+        </member>
+        <member name="T:Vector.CANoe.Threading.ValueEntityStatusCriterion">
+            <summary>
+            Represents a simple criterion which can be used to check the current status
+            of a value entity. 
+            </summary>
+            <remarks>
+            Status to wait for includes change flag, update flag, exceeding a specific
+            change count or exceeding a specific update count.
+            </remarks>
+            <seealso cref="T:Vector.CANoe.Threading.ValueEntityCriterionBase" />
+            <seealso cref="T:Vector.CANoe.Threading.CriterionBase" />
+            <seealso cref="T:Vector.CANoe.Threading.Relation" />
+        </member>
+        <member name="M:Vector.CANoe.Threading.ValueEntityStatusCriterion.#ctor(Vector.CANoe.Runtime.IValueEntityBase,System.UInt64,System.Boolean)">
+            <summary>
+            Constructor. Checks change or update count value.
+            </summary>
+            <param name="valueEntity">Value entity to wait for.</param>
+            <param name="value">Value which must be exceeded by current update or change count.</param>
+            <param name="onChange">Indicates whether to check change count (true) or update count (false).</param>
+        </member>
+        <member name="M:Vector.CANoe.Threading.ValueEntityStatusCriterion.#ctor(Vector.CANoe.Runtime.IValueEntityBase,System.Boolean)">
+            <summary>
+            Constructor. Checks change or update flag.
+            </summary>
+            <param name="valueEntity">Value entity to wait for.</param>
+            <param name="onChange">Indicates whether to check change flag (true) or update flag (false).</param>
+        </member>
+        <member name="M:Vector.CANoe.Threading.ValueEntityStatusCriterion.Evaluate">
+            <summary>
+            Checks whether the status of the value entity has reached the specified values.
+            </summary>
+            <returns>1 if the status is reached, else 0.</returns>
+        </member>
+        <member name="P:Vector.CANoe.Threading.ValueEntityStatusCriterion.RegisterForUpdates">
+            <summary>
+            This is an internal property. It tells the CANoe runtime whether it needs
+            to listen for updates of the runtime values when registering event handlers.
+            </summary>
+        </member>
+        <member name="M:Vector.CANoe.Threading.ValueEntityStatusCriterion.GetUserEventNames(Vector.CANoe.Runtime.Internal.IWaitingContext)">
+            <summary>
+            Internal method. You should never use it yourself.
+            </summary>
+            <param name="context">For internal use only.</param>
+            <returns>For internal use only.</returns>
+        </member>
+        <member name="P:Vector.CANoe.Threading.ValueEntityStatusCriterion.Description">
+            <summary>
+            Description of the criterion. The description is 
+            used for the reporting of the TFS.
+            </summary>
+        </member>
+        <member name="T:Vector.CANoe.Threading.DynamicValueCriterion">
+            <summary>
+            Represents a simple criterion which can be used to check the current value
+            of a dynamically defined signal, environment variable or system variable. 
+            </summary>
+            <remarks>
+            You may designate a relation between the current value and a fixed value.
+            If you do not, the value will be checked for equality. The actual checking
+            allows an small (epsilon) value range around the current value where it is
+            still assumed to be equal to the fixed value. This behavior is necessary
+            because of rounding and representation errors inherent to computer processing
+            of floating point values.
+            </remarks>
+            <example>
+            <code source="..\Build Documentation\ThreadingExamples.cs" region="DynamicValueWait" />
+            </example>
+            <seealso cref="T:Vector.CANoe.Threading.CriterionBase" />
+            <seealso cref="T:Vector.CANoe.Threading.Relation" />
+            <seealso cref="T:Vector.CANoe.Runtime.DynamicSignal"/>
+            <seealso cref="T:Vector.CANoe.Runtime.DynamicEnvironmentVariable"/>
+            <seealso cref="T:Vector.CANoe.Runtime.DynamicSystemVariable"/>
+        </member>
+        <member name="M:Vector.CANoe.Threading.DynamicValueCriterion.#ctor(Vector.CANoe.Runtime.IRuntimeValue,System.Double)">
+            <summary>
+            Constructor. As relation, equality is assumed.
+            </summary>
+            <param name="runtimeValue">Dynamically defined signal or variable of which the value is checked.</param>
+            <param name="value">Value to which the current value must be equal.</param>
+        </member>
+        <member name="M:Vector.CANoe.Threading.DynamicValueCriterion.#ctor(Vector.CANoe.Runtime.IRuntimeValue,Vector.CANoe.Threading.Relation,System.Double)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="runtimeValue">Dynamically defined signal or variable of which the value is checked.</param>
+            <param name="relation">Relation between current value and given value.</param>
+            <param name="value">Value to which the current value must have the
+            given relation.</param>
+        </member>
+        <member name="M:Vector.CANoe.Threading.DynamicValueCriterion.Evaluate">
+            <summary>
+            Checks whether the relation between the current value of the signal, 
+            environment variable or system variable and the given value is 
+            fulfilled.
+            </summary>
+            <returns>1 if the relation is fulfilled, else 0.</returns>
+        </member>
+        <member name="M:Vector.CANoe.Threading.DynamicValueCriterion.EvaluateWaitStarts">
+            <summary>Checks whether the relation between the current value of the signal, 
+            environment variable or system variable and the given value is 
+            fulfilled. Only used on start of wait conditions. The signal has to be on the
+            bus once in the current measurement session.
+            </summary>
+            <returns>1 if the relation is fulfilled, else 0.</returns>
+        </member>
+        <member name="M:Vector.CANoe.Threading.DynamicValueCriterion.GetDynamicHandlerTypes">
+            <summary>
+            See CriterionBase for an explanation. 
+            </summary>
+            <returns>For internal use only.</returns>
+        </member>
+        <member name="P:Vector.CANoe.Threading.DynamicValueCriterion.ParameterDescription">
+            <summary>
+            Returns a description of the type which is examined.
+            </summary>
+        </member>
+        <member name="T:Vector.CANoe.Threading.CANFrameCriterion`1">
+            <summary>
+            Currently, an internal class. Used to wait for frames.
+            </summary>
+        </member>
+        <member name="M:Vector.CANoe.Threading.CANFrameCriterion`1.#ctor(System.Byte)">
+            <summary>
+            Internal method.
+            </summary>
+        </member>
+        <member name="M:Vector.CANoe.Threading.CANFrameCriterion`1.#ctor(System.Byte,System.Int32)">
+            <summary>
+            Internal method.
+            </summary>
+        </member>
+        <member name="M:Vector.CANoe.Threading.CANFrameCriterion`1.#ctor(`0)">
+            <summary>
+            Internal method.
+            </summary>
+        </member>
+        <member name="M:Vector.CANoe.Threading.CANFrameCriterion`1.Evaluate(Vector.CANoe.Runtime.IFrame)">
+            <summary>
+            See CriterionBase.
+            </summary>
+            <param name="frame">For internal use only.</param>
+            <returns>For internal use only.</returns>
+        </member>
+        <member name="M:Vector.CANoe.Threading.CANFrameCriterion`1.GetFrames">
+            <summary>
+            See CriterionBase.
+            </summary>
+            <returns>A frame list.</returns>
+        </member>
+        <member name="P:Vector.CANoe.Threading.CANFrameCriterion`1.Description">
+            <summary>
+            See CriterionBase.
+            </summary>
+            <returns>The description.</returns>
+        </member>
+        <member name="P:Vector.CANoe.Threading.CANFrameCriterion`1.ReceivedFrame">
+            <summary>
+            Returns the frame for the wait function to use.
+            </summary>
+        </member>
+        <member name="T:Vector.CANoe.Threading.CriterionAttribute">
+            <summary>
+            You can mark a method with this attribute to define your own criteria. 
+            </summary>
+            <remarks>
+            In the method, you may evaluate CANoe runtime objects as usual. The method 
+            must be usable as a CriterionDelegate. You should use the OnChange attribute
+            or the OnCANFrame attribute
+            on the method to inform CANoe about the runtime objects which are relevant
+            for the evaluation of the criterion. CANoe will then call the method whenever
+            such a value changes or frame is received, but only while the criterion is actually used.
+            You can not use the OnKey or OnTimer attributes on criteria delegates.
+            </remarks>
+            <example>
+            Wait for the motor to be started and the lights to be turned on:
+            <code source="..\Build Documentation\ThreadingExamples.cs" region="CriterionAttribute" />
+            </example>
+            <seealso cref="T:Vector.CANoe.Threading.CriterionBase"/>
+            <seealso cref="T:Vector.CANoe.Threading.CriterionDelegate"/>
+            <seealso cref="T:Vector.CANoe.Threading.Execution"/>
+        </member>
+        <member name="M:Vector.CANoe.Threading.CriterionAttribute.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="T:Vector.CANoe.Threading.CriterionDelegate">
+            <summary>
+            Delegate for the evaluation of custom criteria.
+            </summary>
+            <returns>true if the criterion is reached; else false</returns>
+            <seealso cref="T:Vector.CANoe.Threading.CriterionAttribute"/>
+        </member>
+        <member name="T:Vector.CANoe.Threading.FrameCriterionDelegate`1">
+            <summary>
+            Delegate for the evaluation of custom criteria based on frame reception.
+            </summary>
+            <typeparam name="T">Type of the frame</typeparam>
+            <param name="frame">Received frame</param>
+            <returns>true if the criterion is reached; else false</returns>
+            <example>
+            Waits until a remote transmission request for the LightState frame is received:
+            <code source="..\Build Documentation\ThreadingExamples.cs" region="FrameCriterionAttribute" />
+            </example>
+            <seealso cref="T:Vector.CANoe.Threading.CriterionAttribute"/>
+        </member>
+        <member name="T:Vector.CANoe.Threading.DelegateCriterionBase">
+            <summary>
+            Helper class wrapping a CriterionDelegate. You do not need to use this
+            class directly.
+            </summary>
+            <seealso cref="T:Vector.CANoe.Threading.CriterionAttribute"/>
+        </member>
+        <member name="M:Vector.CANoe.Threading.DelegateCriterionBase.#ctor(System.Delegate)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="callback">The criterion delegate.</param>
+        </member>
+        <member name="P:Vector.CANoe.Threading.DelegateCriterionBase.Description">
+            <summary>
+            Description of the criterion. The description is 
+            used for the reporting of the TFS.
+            </summary>
+        </member>
+        <member name="P:Vector.CANoe.Threading.DelegateCriterionBase.CallbackName">
+            <summary>
+            Name of the callback, for reporting.
+            </summary>
+        </member>
+        <member name="T:Vector.CANoe.Threading.DelegateCriterion">
+            <summary>
+            Helper class wrapping a criterion delegate for values. You do not need
+            to use this class directly.
+            </summary>
+        </member>
+        <member name="M:Vector.CANoe.Threading.DelegateCriterion.#ctor(Vector.CANoe.Threading.CriterionDelegate)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="callback">For internal use only.</param>
+        </member>
+        <member name="M:Vector.CANoe.Threading.DelegateCriterion.Evaluate">
+            <summary>
+            Calls the delegate.
+            </summary>
+            <returns>returns 1 if evaluation succeeded.</returns>
+        </member>
+        <member name="P:Vector.CANoe.Threading.DelegateCriterion.Description">
+            <summary>
+            Description of the criterion. The description is 
+            used for the reporting of the TFS.
+            </summary>
+            <returns>The description.</returns>
+        </member>
+        <member name="M:Vector.CANoe.Threading.DelegateCriterion.GetHandlerTypes">
+            <summary>
+            See CriterionBase for an explanation.
+            </summary>
+            <returns>All list of handler types.</returns>
+        </member>
+        <member name="M:Vector.CANoe.Threading.DelegateCriterion.GetTimerHandlers">
+            <summary>
+            This is an internal method. It informs the CANoe runtime about the
+            events for which the criterion shall be evaluated.
+            </summary>
+            <returns>For internal use only.</returns>
+        </member>
+        <member name="P:Vector.CANoe.Threading.DelegateCriterion.CallbackName">
+            <summary>
+            The name of the delegate.
+            </summary>
+            <returns>The callback name.</returns>
+        </member>
+        <member name="T:Vector.CANoe.Threading.DynamicDelegateCriterion">
+            <summary>
+            Helper class to define a criterion with a delegate which evaluates dynamically defined
+            signals / variables.
+            </summary>
+            <remarks>
+            Use this class if you have your own delegate which shall be used as criteria e.g. in 
+            wait conditions and checks and the delegate evaluates dynamically defined signals or
+            variables. Give these relevant signals or variables in one of the constructors of the 
+            class so that the runtime knows when to call the delegate.
+            </remarks>
+            <example>
+            <code source="..\Build Documentation\ThreadingExamples.cs" region="DynamicDelegateCriterion" />
+            </example>
+            <seealso cref="T:Vector.CANoe.Runtime.DynamicSignal"/>
+            <seealso cref="T:Vector.CANoe.Runtime.DynamicEnvironmentVariable"/>
+            <seealso cref="T:Vector.CANoe.Runtime.DynamicSystemVariable"/>
+        </member>
+        <member name="M:Vector.CANoe.Threading.DynamicDelegateCriterion.#ctor(Vector.CANoe.Threading.CriterionDelegate,Vector.CANoe.Runtime.IRuntimeValue)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="callback">Delegate used for the evaluation of the criterion.</param>
+            <param name="objectOfInterest">The delegate will be evaluated when the value of this object changes.</param>
+        </member>
+        <member name="M:Vector.CANoe.Threading.DynamicDelegateCriterion.#ctor(Vector.CANoe.Threading.CriterionDelegate,Vector.CANoe.Runtime.IRuntimeValue,Vector.CANoe.Runtime.IRuntimeValue)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="callback">Delegate used for the evaluation of the criterion.</param>
+            <param name="object1">The delegate will be evaluated when the value of this object changes.</param>
+            <param name="object2">The delegate will be evaluated when the value of this object changes.</param>
+        </member>
+        <member name="M:Vector.CANoe.Threading.DynamicDelegateCriterion.#ctor(Vector.CANoe.Threading.CriterionDelegate,System.Collections.Generic.IEnumerable{Vector.CANoe.Runtime.IRuntimeValue})">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="callback">Delegate used for the evaluation of the criterion.</param>
+            <param name="objectsOfInterest">The delegate will be evaluated when the value of one of these objects changes.</param>
+        </member>
+        <member name="M:Vector.CANoe.Threading.DynamicDelegateCriterion.Evaluate">
+            <summary>
+            Calls the delegate.
+            </summary>
+            <returns>The evaluation result.</returns>
+        </member>
+        <member name="M:Vector.CANoe.Threading.DynamicDelegateCriterion.GetDynamicHandlerTypes">
+            <summary>
+            See CriterionBase for an explanation.
+            </summary>
+            <returns>A list of runtime values</returns>
+        </member>
+        <member name="P:Vector.CANoe.Threading.DynamicDelegateCriterion.CallbackName">
+            <summary>
+            The name of the delegate.
+            </summary>
+            <returns>The call back name.</returns>
+        </member>
+        <member name="T:Vector.CANoe.Threading.FrameDelegateCriterion`1">
+            <summary>
+            Helper class wrapping a criterion delegate for frames. You do not need to
+            use this class directly.
+            </summary>
+            <typeparam name="T">Type of the frame</typeparam>
+        </member>
+        <member name="M:Vector.CANoe.Threading.FrameDelegateCriterion`1.#ctor(Vector.CANoe.Threading.FrameCriterionDelegate{`0})">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="callback">A callback.</param>
+        </member>
+        <member name="M:Vector.CANoe.Threading.FrameDelegateCriterion`1.Evaluate">
+            <summary>
+            Calls the delegate with the last received frame (of the correct type).
+            </summary>
+            <returns>returns 1 if evaluation fulfilled.</returns>
+        </member>
+        <member name="M:Vector.CANoe.Threading.FrameDelegateCriterion`1.Evaluate(Vector.CANoe.Runtime.IFrame)">
+            <summary>
+            Calls the delegate on frame reception.
+            </summary>
+            <param name="frame">The frame to be evaluated.</param>
+            <returns>returns 1 if evaluation fulfilled.</returns>
+        </member>
+        <member name="M:Vector.CANoe.Threading.FrameDelegateCriterion`1.GetFrames">
+            <summary>
+            See CriterionBase for an explanation.
+            </summary>
+            <returns>A frame list.</returns>
+        </member>
+        <member name="P:Vector.CANoe.Threading.FrameDelegateCriterion`1.CallbackName">
+            <summary>
+            The name of the delegate.
+            </summary>
+        </member>
+        <member name="T:Vector.CANoe.Threading.UserEventCriterion">
+            <summary>
+            Criterion which can be used to signal the main simulation / test thread
+            that something happened on a background thread. See remarks.
+            </summary>
+            <remarks>
+            The criterion has a "Signaled" state which can be set from the background
+            thread. Signaled is false on creation of the criterion. It will automatically
+            be reset to false whenever a call to Execution.Wait evaluates the Signaled
+            state.<br />
+            <br />
+            You can join the criterion with other criteria in an instance of the Criterion class.<br />
+            <br />
+            A UserEventCriterion instance can't be used simultaneously in several wait calls.
+            </remarks>
+            <example>
+            <code source="..\Build Documentation\ThreadingExamples.cs" region="UserEventCriterion" />
+            </example>
+        </member>
+        <member name="M:Vector.CANoe.Threading.UserEventCriterion.#ctor(System.String)">
+            <summary>
+            Constructs a new user event criterion with Signaled state set to false.
+            </summary>
+            <param name="description">A name or description of the criterion.</param>
+        </member>
+        <member name="M:Vector.CANoe.Threading.UserEventCriterion.Evaluate">
+            <summary>
+            Evaluates the state. Called by the CANoe runtime.
+            </summary>
+            <returns>Greater than 0 if the state is reached; else 0.</returns>
+        </member>
+        <member name="M:Vector.CANoe.Threading.UserEventCriterion.GetUserEventNames(Vector.CANoe.Runtime.Internal.IWaitingContext)">
+            <summary>
+            Internal method. You should never call it yourself.
+            </summary>
+            <param name="context">For internal use only.</param>
+            <returns>For internal use only.</returns>
+        </member>
+        <member name="P:Vector.CANoe.Threading.UserEventCriterion.Description">
+            <summary>
+            Description of the criterion. The description is 
+            used for the reporting of the TFS.
+            </summary>
+            <returns>The description</returns>
+        </member>
+        <member name="P:Vector.CANoe.Threading.UserEventCriterion.Signaled">
+            <summary>
+            The Signaled state of the criterion.
+            </summary>
+            <remarks>
+            Set the state to true so that the main thread will continue if it waits
+            for the criterion. The state is initially false and will automatically be
+            reset to false once the criterion is evaluated in a wait call. The state
+            can safely be accessed by several threads.
+            </remarks>
+        </member>
+        <member name="P:Vector.CANoe.Threading.UserEventCriterion.RegisterForUpdates">
+            <summary>
+            Internal property. You should never use it yourself.
+            </summary>
+        </member>
+        <member name="T:Vector.CANoe.Threading.Criterion">
+            <summary>
+            Represents a criterion which is composed of several simple value criteria
+            or custom criteria.
+            </summary>
+            <seealso cref="T:Vector.CANoe.Threading.CriterionBase"/>
+            <seealso cref="T:Vector.CANoe.Threading.ValueCriterion`1"/>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Criterion.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Criterion.AddMandatory(Vector.CANoe.Threading.ICriterion)">
+            <summary>
+            Adds a mandatory subcriterion. All mandatory criteria must be 
+            fulfilled for the criterion itself to be fulfilled.
+            </summary>
+            <param name="criterion">The subcriterion</param>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Criterion.AddMandatory(Vector.CANoe.Threading.CriterionDelegate)">
+            <summary>
+            Adds a mandatory subcriterion implemented by a method marked with 
+            [Criterion]. All mandatory criteria must be fulfilled for the criterion
+            itself to be fulfilled.
+            </summary>
+            <param name="callback">The method implementing the subcriterion</param>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Criterion.AddMandatory``1(Vector.CANoe.Threading.FrameCriterionDelegate{``0})">
+            <summary>
+            Adds a mandatory subcriterion implemented by a frame handler method marked with 
+            [Criterion]. All mandatory criteria must be fulfilled for the criterion
+            itself to be fulfilled.
+            </summary>
+            <typeparam name="T">Type of the frame. Usually inferred from the delegate.</typeparam>
+            <param name="callback">The method implementing the subcriterion</param>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Criterion.AddOneOf(Vector.CANoe.Threading.ICriterion)">
+            <summary>
+            Adds an optional subcriterion. Of the optional criteria, at least one
+            must be fulfilled for the criterion itself to be fulfilled.
+            </summary>
+            <param name="criterion">The subcriterion</param>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Criterion.AddOneOf(Vector.CANoe.Threading.CriterionDelegate)">
+            <summary>
+            Adds an optional subcriterion implemented by a method marked with 
+            [Criterion]. Of the optional criteria, at least one must be fulfilled
+            for the criterion itself to be fulfilled.
+            </summary>
+            <param name="callback">The method implementing the subcriterion</param>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Criterion.AddOneOf``1(Vector.CANoe.Threading.FrameCriterionDelegate{``0})">
+            <summary>
+            Adds an optional subcriterion implemented by a frame handler method marked with 
+            [Criterion]. Of the optional criteria, at least one must be fulfilled
+            for the criterion itself to be fulfilled.
+            </summary>
+            <typeparam name="T">Type of the frame. Usually inferred from the delegate.</typeparam>
+            <param name="callback">The method implementing the subcriterion</param>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Criterion.Evaluate">
+            <summary>
+            Evaluates the criterion. Returns true if all mandatory subcriteria 
+            evaluate to true and at least one of the optional subcriteria returns
+            true.
+            </summary>
+            <remarks>Returns 0 if no subcriteria are included. If all
+            mandatory subcriteria evaluate to be true, it returns the number of
+            the first optional subcriteria to become true; or 1 if there are no
+            optional subcriteria which are true.</remarks>
+            <returns>The evaluation result.</returns>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Criterion.Evaluate(Vector.CANoe.Runtime.IFrame)">
+            <summary>
+            Evaluates the criterion. Returns true if all mandatory subcriteria 
+            evaluate to true and at least one of the optional subcriteria returns
+            true.
+            </summary>
+            <param name="frame">The frame for evaluation.</param>
+            <returns>returns 1 if the any subcriteria is fulfilled.</returns>
+            <remarks>Returns 0 if no subcriteria are included. If all
+            mandatory subcriteria evaluate to be true, it returns the number of
+            the first optional subcriteria to become true; or 1 if there are no
+            optional subcriteria which are true.</remarks>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Criterion.EvaluateWaitStarts">
+            <summary>
+            Evaluates the criterion on start of a wait call. Returns true if all mandatory subcriteria 
+            evaluate to true and at least one of the optional subcriteria returns
+            true.
+            </summary>
+            <returns>returns 1 if the any subcriteria is fulfilled.</returns>
+            <remarks>Returns 0 if no subcriteria are included. If all
+            mandatory subcriteria evaluate to be true, it returns the number of
+            the first optional subcriteria to become true; or 1 if there are no
+            optional subcriteria which are true.</remarks>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Criterion.GetHandlerTypes">
+            <summary>
+            See CriterionBase for an explanation.
+            </summary>
+            <returns>All handler types of the subcriteria.</returns>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Criterion.GetDynamicHandlerTypes">
+            <summary>
+            See CriterionBase for an explanation.
+            </summary>
+            <returns>All handler types of the subcriteria</returns>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Criterion.GetFrames">
+            <summary>
+            See CriterionBase for an explanation.
+            </summary>
+            <returns>A list of frames.</returns>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Criterion.GetUserEventNames(Vector.CANoe.Runtime.Internal.IWaitingContext)">
+            <summary>
+            Internal method. You should never use it yourself.
+            </summary>
+            <param name="context">For internal use only.</param>
+            <returns>For internal use only.</returns>
+        </member>
+        <member name="P:Vector.CANoe.Threading.Criterion.Description">
+            <summary>
+            Description of the criterion. The description is 
+            used for the reporting of the TFS.
+            </summary>
+            <returns>The description</returns>
+        </member>
+        <member name="P:Vector.CANoe.Threading.Criterion.RegisterForUpdates">
+            <summary>
+            Internal property. You should never use it yourself.
+            </summary>
+        </member>
+        <member name="T:Vector.CANoe.Threading.CriterionEvaluator">
+            <summary>
+            Internal class. You should never use this type.
+            </summary>
+        </member>
+        <member name="M:Vector.CANoe.Threading.CriterionEvaluator.#ctor(Vector.CANoe.Threading.ICriterion)">
+            <summary>
+            Internal constructor. You should never use this type.
+            </summary>
+            <param name="callback">For internal use only.</param>
+        </member>
+        <member name="M:Vector.CANoe.Threading.CriterionEvaluator.Evaluate">
+            <summary>
+            Internal method. You should never use this type.
+            </summary>
+            <returns>For internal use only.</returns>
+        </member>
+        <member name="M:Vector.CANoe.Threading.CriterionEvaluator.Evaluate(Vector.CANoe.Runtime.Internal.IFrame)">
+            <summary>
+            Internal method. You should never use this type.
+            </summary>
+            <param name="frame">For internal use only.</param>
+            <returns>The evaluation result.</returns>
+        </member>
+        <member name="M:Vector.CANoe.Threading.CriterionEvaluator.EvaluateWaitStarts">
+            <summary>
+            Internal method. You should never use this type.
+            </summary>
+            <returns>For internal use only.</returns>
+        </member>
+        <member name="P:Vector.CANoe.Threading.CriterionEvaluator.RuntimeValues">
+            <summary>
+            Internal property. You should never use this type.
+            </summary>
+        </member>
+        <member name="P:Vector.CANoe.Threading.CriterionEvaluator.RegisterForUpdates">
+            <summary>
+            Internal property. You should never use this type.
+            </summary>
+        </member>
+        <member name="P:Vector.CANoe.Threading.CriterionEvaluator.CANFrames">
+            <summary>
+            Internal property. You should never use this type.
+            </summary>
+        </member>
+        <member name="P:Vector.CANoe.Threading.CriterionEvaluator.EthernetPackets">
+            <summary>
+            Internal property. You should never use this type.
+            </summary>
+        </member>
+        <member name="P:Vector.CANoe.Threading.CriterionEvaluator.EthernetPacketErrors">
+            <summary>
+            Internal property. You should never use this type.
+            </summary>
+        </member>
+        <member name="M:Vector.CANoe.Threading.CriterionEvaluator.GetUserEventNames(Vector.CANoe.Runtime.Internal.IWaitingContext)">
+            <summary>
+            Internal method. You should never use this type.
+            </summary>
+            <param name="context">For internal use only.</param>
+            <returns>For internal use only.</returns>
+        </member>
+        <member name="M:Vector.CANoe.Threading.CriterionEvaluator.RegisterTimerCallbacks(System.Object)">
+            <summary>
+            Internal method. You should never use this type.
+            </summary>
+            <param name="client">For internal use only.</param>
+        </member>
+        <member name="M:Vector.CANoe.Threading.CriterionEvaluator.UnregisterTimerCallbacks">
+            <summary>
+            Internal method. You should never use this type.
+            </summary>  
+        </member>
+        <member name="P:Vector.CANoe.Threading.CriterionEvaluator.Description">
+            <summary>
+            Internal method. You should never use this type.
+            </summary>
+        </member>
+        <member name="T:Vector.CANoe.Threading.TaskCancelToken">
+            <summary>
+            Contains the information if a task is to be canceled. 
+            If a task processes a loop, check for IsCancellationRequested and exit if true.
+            </summary>    
+        </member>
+        <member name="P:Vector.CANoe.Threading.TaskCancelToken.IsCancellationRequested">
+            <summary>
+            false by default. True, if the task is to be stopped.
+            </summary>
+        </member>
+        <member name="T:Vector.CANoe.Threading.TaskAction">
+            <summary>
+            Task delegate function. 
+            Implement to pass to. See: Execution.WaitForTask
+            </summary>
+            <param name="tct">TaskCancelToken. Observe to stop task on timeout or measurement stop</param>
+            <returns>return any value &gt; 0 for own results. Values 0 and below are reserved for following return values:
+            <br>Execution.WAIT_TIMEOUT: if an maxTime was defined in  Execution.WaitForTask and the task did not return within maxTime milliseconds</br>
+            <br>Execution.WAIT_ABORTED: if the measurement was stopped during task execution</br>
+            <br>Execution.WAIT_EXCEPTION: if an exception occurred in the taskAction delegate</br>
+            <br>Execution.WAIT_ILLEGAL_RESULTVALUE: the result provided by the task is &lt;= 0 </br>
+            </returns>
+        </member>
+        <member name="T:Vector.CANoe.Threading.Execution">
+            <summary>
+            Provides access to execution control in CANoe.
+            </summary>
+        </member>
+        <member name="F:Vector.CANoe.Threading.Execution.WAIT_ABORTED">
+            <summary>
+            Result of a wait showing that the wait has been aborted (e.g. measurement was stopped)
+            </summary>
+        </member>
+        <member name="F:Vector.CANoe.Threading.Execution.WAIT_TIMEOUT">
+            <summary>
+            Result of a wait showing that the wait has timed out.
+            </summary>
+        </member>
+        <member name="F:Vector.CANoe.Threading.Execution.WAIT_EXCEPTION">
+            <summary>
+            Result of a WaitForTask showing the test was interrupted due to an exception.
+            </summary>
+        </member>
+        <member name="F:Vector.CANoe.Threading.Execution.WAIT_ILLEGAL_RESULTVALUE">
+            <summary>
+            Result of a WaitForTask showing the test task returned an invalid value (allowed values are &gt; 0)
+            If you need an arbitrary value range, use the parameter object to pass information in and out.
+            </summary>
+        </member>
+        <member name="F:Vector.CANoe.Threading.Execution.WAIT_EMPTY_CALL_LIST">
+            <summary>
+            Result of a WaitForAllAnswers or WaitForAnyAnswer in case the list of network function calls
+            passed in is empty - so there is nothing to wait for.
+            </summary>
+        </member>
+        <member name="F:Vector.CANoe.Threading.Execution.WAIT_VALUE_STATE_RESET">
+            <summary>
+            Result of a wait showing that the value status has been reset.
+            </summary>
+        </member>
+        <member name="F:Vector.CANoe.Threading.Execution.WAIT_NOT_ALLOWED">
+            <summary>
+            Result of a wait called from non-Test, -Snippet or -Waiting Handler code (e.g. from a simulation node).
+            </summary>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.Wait(System.Int32)">
+            <summary>
+            Waits a certain timespan. During the wait, the measurement and simulation
+            are not blocked.
+            </summary>
+            <param name="timeSpan">duration of the wait, in milliseconds</param>
+            <returns>
+            <br>WAIT_TIMEOUT: if the given timespan elapsed</br>
+            <br>WAIT_ABORTED: if the measurement was stopped before the given timespan elapsed</br>
+            <br>WAIT_NOT_ALLOWED: if wait was called from non-Test, -Snippet or -Waiting Handler code</br>
+            </returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">thrown if the method is called with a negative time span</exception>
+            <example>
+            <code source="..\Build Documentation\ThreadingExamples.cs" region="SimpleWait" />
+            </example>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitSilent(System.Int32)">
+            <summary>
+            Waits a certain timespan. During the wait, the measurement and simulation
+            are not blocked. The function does not write in the TFS report.
+            </summary>
+            <param name="timeSpan">duration of the wait, in milliseconds</param>
+            <returns>
+            <br>WAIT_TIMEOUT: if the given timespan elapsed</br>
+            <br>WAIT_ABORTED: if the measurement was stopped before the given timespan elapsed</br>
+            <br>WAIT_NOT_ALLOWED: if wait was called from non-Test, -Snippet or -Waiting Handler code</br>
+            </returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">thrown if the method is called with a negative time span</exception>
+            <example>
+            <code source="..\Build Documentation\ThreadingExamples.cs" region="SimpleWaitSilent" />
+            </example>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForTask(Vector.CANoe.Threading.TaskAction,System.Int32)">
+            <summary>
+            Executes a task in a separate thread. During the wait, the measurement and simulation are not blocked. 
+            Optionally returns failure after a certain timespan.
+            </summary>
+            <param name="taskAction">A delegate function to execute in a separate task</param>
+            <param name="maxTime">Optional: maximum time to wait, in milliseconds. </param>
+            <returns>
+            <br>WAIT_TIMEOUT: if an maxTime was defined and the task did not return within maxTime milliseconds</br>
+            <br>WAIT_ABORTED: if the measurement was stopped during task execution</br>
+            <br>WAIT_EXCEPTION: if an exception occurred in the taskAction delegate</br>
+            <br>WAIT_ILLEGAL_RESULTVALUE: the result provided by the task is &lt;= 0 </br>
+            <br> &gt; 0 any positive result provided by the taskAction delegate (only use numbers &gt; 0 as return values)</br>
+            </returns>
+            <remarks>
+            <br>Be careful: You may not use most of the CANoe API functions in the taskAction.</br>
+            <br>Allowed is:</br> 
+            <br>Modifying SystemVariables</br>
+            <br>Using Output.* functions</br>
+            <br>IsCancellationRequested of the TaskCancelToken is set to true if maxTime is is exceeded. 
+            The affected task should then terminate by itself. See example below. Neither the task will be terminated automatically if maxTime has elapsed, 
+            nor does WaitForTask return before the task has been terminated by itself.</br>
+            </remarks>
+            <example>
+            <code source="..\Build Documentation\TaskExamples.cs" region="SampleTask" />
+            <code source="..\Build Documentation\TaskExamples.cs" region="MinimalistTask" />
+            <code source="..\Build Documentation\TaskExamples.cs" region="SampleTaskWithInOutParameters" />
+            </example>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.Wait(Vector.CANoe.Threading.ICriterion)">
+            <summary>
+            Waits for a criterion. During the wait, the measurement and simulation 
+            are not blocked.
+            </summary>
+            <param name="criterion">the criterion</param>
+            <returns>Result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <remarks>
+            Returns immediately if the criterion is already fulfilled when called.
+            As criterion, either a ValueCriterion or a Criterion instance may be
+            used.
+            The result is either WAIT_ABORTED, WAIT_NOT_ALLOWED, or the result returned by the criterion.
+            </remarks>
+            <example>
+            Wait for motor and lights to be turned on:
+            <code source="..\Build Documentation\ThreadingExamples.cs" region="CriterionWait" />
+            </example>
+            <seealso cref="T:Vector.CANoe.Threading.ICriterion"/>
+            <seealso cref="T:Vector.CANoe.Threading.ValueCriterion`1"/>
+            <seealso cref="T:Vector.CANoe.Threading.Criterion"/>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.Wait(Vector.CANoe.Threading.ICriterion,System.Int32)">
+            <summary>
+            Waits for a criterion. During the wait, the measurement and simulation 
+            are not blocked.
+            </summary>
+            <param name="criterion">the criterion</param>
+            <param name="maxTime">maximum time to wait, in milliseconds</param>
+            <returns>Result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <remarks>
+            Returns immediately if the criterion is already fulfilled when called.
+            As criterion, either a ValueCriterion or a Criterion instance may be
+            used.
+            </remarks>
+            <example>
+            Wait for motor and lights to be turned on:
+            <code source="..\Build Documentation\ThreadingExamples.cs" region="CriterionWait2" />
+            </example>
+            <seealso cref="T:Vector.CANoe.Threading.ICriterion"/>
+            <seealso cref="T:Vector.CANoe.Threading.ValueCriterion`1"/>
+            <seealso cref="T:Vector.CANoe.Threading.Criterion"/>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.Wait(Vector.CANoe.Threading.CriterionDelegate)">
+            <summary>
+            Waits for a criterion which is implemented by a method marked with 
+            [Criterion]. During the wait, the measurement and simulation are not
+            blocked.
+            </summary>
+            <param name="callback">Method which implements the criterion</param>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <remarks>
+            Returns immediately if the criterion is already fulfilled when called.
+            </remarks>
+            <example>
+            Wait for the motor to be started and the lights to be turned on:
+            <code source="..\Build Documentation\ThreadingExamples.cs" region="CriterionAttribute2" />
+            </example>
+            <seealso cref="T:Vector.CANoe.Threading.CriterionAttribute"/>
+            <seealso cref="T:Vector.CANoe.Threading.CriterionDelegate"/>
+            <seealso cref="T:Vector.CANoe.Threading.ICriterion"/>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.Wait(Vector.CANoe.Threading.CriterionDelegate,System.Int32)">
+            <summary>
+            Waits for a criterion which is implemented by a method marked with 
+            [Criterion]. During the wait, the measurement and simulation are not
+            blocked.
+            </summary>
+            <param name="callback">Method which implements the criterion</param>
+            <param name="maxTime">maximum time to wait, in milliseconds</param>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <remarks>
+            Returns immediately if the criterion is already fulfilled when called.
+            </remarks>
+            <example>
+            Wait for the motor to be started and the lights to be turned on:
+            <code source="..\Build Documentation\ThreadingExamples.cs" region="CriterionAttribute" />
+            </example>
+            <seealso cref="T:Vector.CANoe.Threading.CriterionAttribute"/>
+            <seealso cref="T:Vector.CANoe.Threading.CriterionDelegate"/>
+            <seealso cref="T:Vector.CANoe.Threading.ICriterion"/>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.Wait``1(Vector.CANoe.Threading.FrameCriterionDelegate{``0})">
+            <summary>
+            Waits for a criterion which is implemented by a frame handler method marked with 
+            [Criterion]. During the wait, the measurement and simulation are not
+            blocked.
+            </summary>
+            <param name="callback">Method which implements the criterion</param>
+            <typeparam name="T">Type of the frame</typeparam>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <remarks>
+            Returns immediately if the criterion is already fulfilled when called.
+            </remarks>
+            <example>
+            Waits until a remote transmission request for the LightState frame is received:
+            <code source="..\Build Documentation\ThreadingExamples.cs" region="FrameCriterionAttribute2" />
+            </example>
+            <seealso cref="T:Vector.CANoe.Threading.CriterionAttribute"/>
+            <seealso cref="T:Vector.CANoe.Threading.FrameCriterionDelegate`1"/>
+            <seealso cref="T:Vector.CANoe.Threading.CriterionBase"/>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.Wait``1(Vector.CANoe.Threading.FrameCriterionDelegate{``0},System.Int32)">
+            <summary>
+            Waits for a criterion which is implemented by a frame handler method marked with 
+            [Criterion]. During the wait, the measurement and simulation are not
+            blocked.
+            </summary>
+            <param name="callback">Method which implements the criterion</param>
+            <param name="maxTime">maximum time to wait, in milliseconds</param>
+            <typeparam name="T">Type of the frame</typeparam>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <remarks>
+            Returns immediately if the criterion is already fulfilled when called.
+            </remarks>
+            <example>
+            Waits until a remote transmission request for the LightState frame is received:
+            <code source="..\Build Documentation\ThreadingExamples.cs" region="FrameCriterionAttribute" />
+            </example>
+            <seealso cref="T:Vector.CANoe.Threading.CriterionAttribute"/>
+            <seealso cref="T:Vector.CANoe.Threading.FrameCriterionDelegate`1"/>
+            <seealso cref="T:Vector.CANoe.Threading.CriterionBase"/>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.Wait``1(System.Double)">
+            <summary>
+            Waits for a bus signal, environment variable or system variable to 
+            reach a certain value.
+            </summary>
+            <typeparam name="T">the bus signal, environment variable or system variable</typeparam>
+            <param name="value">the value to be reached</param>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <remarks>Returns immediately if the value is already reached when called.</remarks>
+            <example>
+            Wait for the motor to be turned on:
+            <code source="..\Build Documentation\ThreadingExamples.cs" region="ValueWait" />
+            </example>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.Wait``1(System.Double,System.Int32)">
+            <summary>
+            Waits for a bus signal, environment variable or system variable to 
+            reach a certain value.
+            </summary>
+            <typeparam name="T">the bus signal, environment variable or system 
+            variable</typeparam>
+            <param name="value">the value to be reached</param>
+            <param name="maxTime">the maximum time to wait, in milliseconds</param>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <remarks>Returns immediately if the value is already reached when called.</remarks>
+            <example>
+            Wait for the motor to be turned on:
+            <code source="..\Build Documentation\ThreadingExamples.cs" region="ValueWait2" />
+            </example>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.Wait``1(Vector.CANoe.Threading.Relation,System.Double)">
+            <summary>
+            Waits for a bus signal, environment variable or system variable to
+            have a certain relation to a certain value.
+            </summary>
+            <typeparam name="T">the bus signal, environment variable or system
+            variable</typeparam>
+            <param name="relation">the relation which shall be fulfilled</param>
+            <param name="value">the value for the relation</param>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <remarks>Returns immediately if the relation is already fulfilled
+            when called.</remarks>
+            <example>
+            Wait for the engine speed to be more than 2000:
+            <code source="..\Build Documentation\ThreadingExamples.cs" region="RelationWait" />
+            </example>
+            <seealso cref="T:Vector.CANoe.Threading.Relation"/>
+            
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.Wait``1(Vector.CANoe.Threading.Relation,System.Double,System.Int32)">
+            <summary>
+            Waits for a bus signal, environment variable or system variable to
+            have a certain relation to a certain value.
+            </summary>
+            <typeparam name="T">the bus signal, environment variable or system
+            variable</typeparam>
+            <param name="relation">the relation which shall be fulfilled</param>
+            <param name="value">the value for the relation</param>
+            <param name="maxTime">the maximum time to wait, in milliseconds</param>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <remarks>Returns immediately if the relation is already fulfilled
+            when called.</remarks>
+            <example>
+            Wait for the engine speed to be more than 2000:
+            <code source="..\Build Documentation\ThreadingExamples.cs" region="RelationWait2" />
+            </example>
+            <seealso cref="T:Vector.CANoe.Threading.Relation"/>
+            
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.Wait(Vector.CANoe.Runtime.IValueEntityBase,System.Object)">
+            <summary>
+            Waits for a value entity to reach a certain value.
+            </summary>
+            <param name="valueEntity">the value entity to wait for</param>
+            <param name="value">the value to be reached</param>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <remarks>Returns immediately if the value is already reached when called.</remarks>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.Wait(Vector.CANoe.Runtime.IValueEntityBase,System.Object,System.Int32)">
+            <summary>
+            Waits for a value entity to reach a certain value.
+            </summary>
+            <param name="valueEntity">the value entity to wait for</param>
+            <param name="value">the value to be reached</param>
+            <param name="maxTime">the maximum time to wait, in milliseconds</param>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <remarks>Returns immediately if the value is already reached when called.</remarks>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.Wait(Vector.CANoe.Runtime.IValueEntityBase,Vector.CANoe.Threading.Relation,System.Object)">
+            <summary>
+            Waits for a value entity to have a certain relation to a certain value.
+            </summary>
+            <param name="valueEntity">the value entity to wait for</param>
+            <param name="relation">the relation which shall be fulfilled</param>
+            <param name="value">the value for the relation</param>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <remarks>Returns immediately if the relation is already fulfilled
+            when called.</remarks>
+            <seealso cref="T:Vector.CANoe.Threading.Relation"/>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.Wait(Vector.CANoe.Runtime.IValueEntityBase,Vector.CANoe.Threading.Relation,System.Object,System.Int32)">
+            <summary>
+            Waits for a value entity to have a certain relation to a certain value.
+            </summary>
+            <param name="valueEntity">the value entity to wait for</param>
+            <param name="relation">the relation which shall be fulfilled</param>
+            <param name="value">the value for the relation</param>
+            <param name="maxTime">the maximum time to wait, in milliseconds</param>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <remarks>Returns immediately if the relation is already fulfilled
+            when called.</remarks>
+            <seealso cref="T:Vector.CANoe.Threading.Relation"/>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForUpdateCountGreater(Vector.CANoe.Runtime.IValueEntityBase,System.UInt64)">
+            <summary>
+            Waits for the update counter of a value entity to exceed a certain value.
+            </summary>
+            <param name="valueEntity">the value entity to wait for</param>
+            <param name="value">the update counter value to be exceeded</param>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <remarks>Returns immediately if the condition is already fulfilled when called.</remarks>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForUpdateCountGreater(Vector.CANoe.Runtime.IValueEntityBase,System.UInt64,System.Int32)">
+            <summary>
+            Waits for the update counter of a value entity to exceed a certain value.
+            </summary>
+            <param name="valueEntity">the value entity to wait for</param>
+            <param name="value">the update counter value to be exceeded</param>
+            <param name="maxTime">the maximum time to wait, in milliseconds</param>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <remarks>Returns immediately if the condition is already fulfilled when called.</remarks>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForChangeCountGreater(Vector.CANoe.Runtime.IValueEntityBase,System.UInt64)">
+            <summary>
+            Waits for the change counter of a value entity to exceed a certain value.
+            </summary>
+            <param name="valueEntity">the value entity to wait for</param>
+            <param name="value">the change counter value to be exceeded</param>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <remarks>Returns immediately if the condition is already fulfilled when called.</remarks>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForChangeCountGreater(Vector.CANoe.Runtime.IValueEntityBase,System.UInt64,System.Int32)">
+            <summary>
+            Waits for the change counter of a value entity to exceed a certain value.
+            </summary>
+            <param name="valueEntity">the value entity to wait for</param>
+            <param name="value">the change counter value to be exceeded</param>
+            <param name="maxTime">the maximum time to wait, in milliseconds</param>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <remarks>Returns immediately if the condition is already fulfilled when called.</remarks>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForUpdate(Vector.CANoe.Runtime.IValueEntityBase)">
+            <summary>
+            Waits for an update of a value entity. This is equivalent to waiting for an update
+            count greater than the current update counter value.
+            </summary>
+            <param name="valueEntity">the value entity to wait for</param>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForUpdate(Vector.CANoe.Runtime.IValueEntityBase,System.Int32)">
+            <summary>
+            Waits for an update of a value entity. This is equivalent to waiting for an update
+            count greater than the current update counter value.
+            </summary>
+            <param name="valueEntity">the value entity to wait for</param>
+            <param name="maxTime">the maximum time to wait, in milliseconds</param>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForChange(Vector.CANoe.Runtime.IValueEntityBase)">
+            <summary>
+            Waits for a change of a value entity. This is equivalent to waiting for a change
+            count greater than the current change counter value.
+            </summary>
+            <param name="valueEntity">the value entity to wait for</param>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForChange(Vector.CANoe.Runtime.IValueEntityBase,System.Int32)">
+            <summary>
+            Waits for a change of a value entity. This is equivalent to waiting for a change
+            count greater than the current change counter value.
+            </summary>
+            <param name="valueEntity">the value entity to wait for</param>
+            <param name="maxTime">the maximum time to wait, in milliseconds</param>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForUpdateFlag(Vector.CANoe.Runtime.IValueEntityBase)">
+            <summary>
+            Waits for the update flag of a value entity to be set.
+            </summary>
+            <param name="valueEntity">the value entity to wait for</param>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <remarks>Returns immediately if the update flag is already set when called.</remarks>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForUpdateFlag(Vector.CANoe.Runtime.IValueEntityBase,System.Int32)">
+            <summary>
+            Waits for the update flag of a value entity to be set.
+            </summary>
+            <param name="valueEntity">the value entity to wait for</param>
+            <param name="maxTime">the maximum time to wait, in milliseconds</param>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <remarks>Returns immediately if the update flag is already set when called.</remarks>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForChangeFlag(Vector.CANoe.Runtime.IValueEntityBase)">
+            <summary>
+            Waits for the change flag of a value entity to be set.
+            </summary>
+            <param name="valueEntity">the value entity to wait for</param>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <remarks>Returns immediately if the change flag is already set when called.</remarks>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForChangeFlag(Vector.CANoe.Runtime.IValueEntityBase,System.Int32)">
+            <summary>
+            Waits for the change flag of a value entity to be set.
+            </summary>
+            <param name="valueEntity">the value entity to wait for</param>
+            <param name="maxTime">the maximum time to wait, in milliseconds</param>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <remarks>Returns immediately if the change flag is already set when called.</remarks>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForJ1939Frame``1(``0@)">
+            <summary>
+            Waits for a specific J1939 frame to be received.
+            </summary>
+            <typeparam name="T">The type of the frame, usually inferred from the parameter</typeparam>
+            <param name="frame">The frame. When passed in, specifies the PNG for reception.
+            After the method completes, the parameter is changed and now contains the received frame.</param>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <example>
+            Waits until a MotorState frame is received:
+            <code source="..\Build Documentation\ThreadingExamples.cs" region="FrameWait" />
+            </example>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForJ1939Frame``1(``0@,System.Int32)">
+            <summary>
+            Waits for a specific J1939 frame to be received.
+            </summary>
+            <typeparam name="T">The type of the frame, usually inferred from the parameter</typeparam>
+            <param name="frame">The frame. When passed in, specifies the PNG for reception.
+            After the method completes, the parameter is changed and now contains the received frame.</param>
+            <param name="maxTime">the maximum time to wait, in milliseconds</param>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <example>
+            Waits until a MotorState frame is received:
+            <code source="..\Build Documentation\ThreadingExamples.cs" region="FrameWait" />
+            </example>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForCANFrame``1(``0@)">
+            <summary>
+            Waits for a specific CAN frame to be received.
+            </summary>
+            <typeparam name="T">The type of the frame, usually inferred from the parameter</typeparam>
+            <param name="frame">The frame. When passed in, specifies the ID and the channel for reception.
+            After the method completes, the parameter is changed and now contains the received frame.</param>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <example>
+            Waits until a MotorState frame is received:
+            <code source="..\Build Documentation\ThreadingExamples.cs" region="FrameWait" />
+            </example>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForCANFrame``1(``0@,System.Int32)">
+            <summary>
+            Waits for a specific CAN frame to be received.
+            </summary>
+            <typeparam name="T">The type of the frame, usually inferred from the parameter</typeparam>
+            <param name="frame">The frame. When passed in, specifies the ID and the channel for reception.
+            After the method completes, the parameter is changed and now contains the received frame.</param>
+            <param name="maxTime">the maximum time to wait, in milliseconds</param>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <example>
+            Waits until a MotorState frame is received:
+            <code source="..\Build Documentation\ThreadingExamples.cs" region="FrameWait2" />
+            </example>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForAnyCANFrame(System.Byte,Vector.CANoe.Runtime.CANFrame@)">
+            <summary>
+            Waits for an arbitrary CAN frame to be received.
+            </summary>
+            <param name="channel">Channel on which the frame must be received</param>
+            <param name="frame">After the method completes, contains the received frame</param>
+            <returns>Result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <example>
+            Waits until a CAN frame is received on channel 1:
+            <code source="..\Build Documentation\ThreadingExamples.cs" region="FrameWait3" />
+            </example>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForAnyCANFrame(System.Byte,Vector.CANoe.Runtime.CANFrame@,System.Int32)">
+            <summary>
+            Waits for an arbitrary CAN frame to be received.
+            </summary>
+            <param name="channel">Channel on which the frame must be received</param>
+            <param name="frame">After the method completes, contains the received frame</param>
+            <param name="maxTime">the maximum time to wait, in milliseconds</param>
+            <returns>Result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <example>
+            Waits until a CAN frame is received on channel 1:
+            <code source="..\Build Documentation\ThreadingExamples.cs" region="FrameWait4" />
+            </example>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForAnyCANFrame(Vector.CANoe.Runtime.CANFrame@)">
+            <summary>
+            Waits for an arbitrary CAN frame to be received on an arbitrary channel.
+            </summary>
+            <param name="frame">After the method completes, contains the received frame</param>
+            <returns>Result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <example>
+            Waits until a CAN frame is received on any channel:
+            <code source="..\Build Documentation\ThreadingExamples.cs" region="FrameWait5" />
+            </example>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForAnyCANFrame(Vector.CANoe.Runtime.CANFrame@,System.Int32)">
+            <summary>
+            Waits for an arbitrary CAN frame to be received on an arbitrary channel.
+            </summary>
+            <param name="frame">After the method completes, contains the received frame</param>
+            <param name="maxTime">the maximum time to wait, in milliseconds</param>
+            <returns>Result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+            <example>
+            Waits until a CAN frame is received on channel 1:
+            <code source="..\Build Documentation\ThreadingExamples.cs" region="FrameWait6" />
+            </example>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForConfirmation(System.String)">
+            <summary>
+            Shows a popup window with the specified string and waits for a user confirmation 
+            (Yes/No). The window contains a textfield in which some additional information can 
+            be entered. The text is automatically inserted into the test protocol.
+            Function is not allowed in standalone mode and is reported as an error in test system or fail in case of 2-valued verdict concept.
+            </summary>
+            <param name="question"> the text that is shown in the popup window</param>
+            <returns>
+            <br>WAIT_NOT_ALLOWED: if wait was called from non-Test, -Snippet or -Waiting Handler code</br>
+            <br>1: the user pressed Yes</br>
+            <br>2: the user pressed No</br>
+            <br>-1: general error, e.g. when called outside a test sequence</br>
+            </returns>
+            
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForConfirmation(System.String,System.Int32)">
+            <summary>
+            Shows a popup window with the specified string and waits for a user confirmation 
+            (Yes/No) or for a timeout.
+            The window contains a textfield in which some additional information can be entered.
+            The text is automatically inserted into the test protocol.
+            Function is not allowed in standalone mode and is reported as an error in test system or fail in case of 2-valued verdict concept.
+            </summary>
+            <param name="question">the text that is shown in the popup window</param>
+            <param name="maxTime">the maximum time to wait, in milliseconds</param>
+            <returns>
+            <br>WAIT_TIMEOUT: a timeout occurred</br>
+            <br>WAIT_NOT_ALLOWED: if wait was called from non-Test, -Snippet or -Waiting Handler code</br>
+            <br>1: the user pressed Yes </br>
+            <br>2: the user pressed No </br>
+            <br>-1: general error, e.g. when called outside a test sequence </br>
+            </returns>
+            
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForConfirmation(System.String,System.Boolean,System.Int32)">
+            <summary>
+            Shows a popup window with the specified string and an optional unclear button. The Dialog waits for a user confirmation 
+            (Yes/No/Unclear) or for a timeout.
+            The window contains a text field in which some additional information can be entered.
+            The text is automatically inserted into the test protocol.
+            Function is not allowed in standalone mode and is reported as an error in test system or fail in case of 2-valued verdict concept.
+            </summary>
+            <param name="question">the text that is shown in the popup window</param>
+            <param name="maxTime">the maximum time to wait, in milliseconds</param>
+            <param name="withUnclear">true to display the Unclear button; otherwise false</param>
+            <returns>
+            <br>WAIT_NOT_ALLOWED: if wait was called from non-Test, -Snippet or -Waiting Handler code</br>
+            <br>WAIT_TIMEOUT: a timeout occurred</br>
+            <br>1: the user pressed Yes </br>
+            <br>2: the user pressed No </br>
+            <br>3: the user pressed Unclear </br>
+            <br>-1: general error, e.g. when called outside a test sequence </br>
+            </returns>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForConfirmation(System.String,System.Boolean,System.Int32,System.String,System.String,System.String)">
+            <summary>
+            Shows a popup window with the specified string and an optional unclear button. The Dialog waits for a user confirmation 
+            (Yes/No/Unclear) or for a timeout.
+            The window contains a text field in which some additional information can be entered.
+            The text is automatically inserted into the test protocol.
+            Function is not allowed in standalone mode and is reported as an error in test system or fail in case of 2-valued verdict concept.
+            The window displays an image: resourcePath
+            </summary>
+            <param name="question">the text that is shown in the popup window</param>
+            <param name="maxTime">the maximum time to wait, in milliseconds</param>
+            <param name="withUnclear">true to display the Unclear button; otherwise false</param>
+            <param name="messageHeading">A heading above the dialog text</param>
+            <param name="resourcePath">A URL or file path. Pictures are shown in the dialog itself, for other resources a link is shown. Supported picture types are: bmp, jpg, png, gif. For arbitrary files, the application registered for that file type on the computer is used to open it when the user clicks the link. Relative file paths are based on the configuration or test setup which contains the test module.</param>
+            <param name="resourceTitle">Image title to display</param>
+            <returns>
+            <br>WAIT_NOT_ALLOWED: if wait was called from non-Test, -Snippet or -Waiting Handler code</br>
+            <br>WAIT_TIMEOUT: a timeout occurred</br>
+            <br>1: the user pressed Yes </br>
+            <br>2: the user pressed No </br>
+            <br>3: the user pressed Unclear </br>
+            <br>-1: general error, e.g. when called outside a test sequence </br>
+            </returns>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForInput(System.String,System.String@)">
+            <summary>
+            Shows a popup window with the specified question string and waits until the user 
+            has entered a string.
+            Function is not allowed in standalone mode and is reported as an error in test system or fail in case of 2-valued verdict concept.
+            </summary>
+            <param name="message">the text that is shown in the popup window</param>
+            <param name="value">the text that is entered by the user. If "value" already contains 
+            a string object when the function is called it is displayed as default value.</param>
+            <returns>        
+            <br>WAIT_NOT_ALLOWED: if wait was called from non-Test, -Snippet or -Waiting Handler code</br>
+            <br>1: the dialog was closed by pressing the button [Ok] (successful call)</br>
+            <br>&lt;0: General error, e.g. by calling outside of a test sequence</br>
+            </returns>
+            
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForInput(System.String,System.Int32,System.String@)">
+            <summary>
+            Shows a popup window with the specified question string and waits until the user 
+            has entered a string or a timeout happens.
+            Function is not allowed in standalone mode and is reported as an error in test system or fail in case of 2-valued verdict concept.
+            </summary>
+            <param name="message">the text that is shown in the popup window. </param>
+            <param name="value">the text that is entered by the user. If "value" already contains 
+            a string object when the function is called it is displayed as default value.</param>
+            <param name="maxTime">the maximum time to wait, in milliseconds.</param>
+            <returns>
+            <br>WAIT_TIMEOUT: a timeout occurred</br>
+            <br>WAIT_NOT_ALLOWED: if wait was called from non-Test, -Snippet or -Waiting Handler code</br>
+            <br>1: the dialog was closed by pressing the button [Ok] (successful call)</br>
+            <br>&lt;0: General error, e.g. by calling outside of a test sequence</br>
+            </returns>
+            
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForInput(System.String,System.Int64@)">
+            <summary>
+            Shows a popup window with the specified question string and waits until the user 
+            has entered an integer.
+            Function is not allowed in standalone mode and is reported as an error in test system or fail in case of 2-valued verdict concept.
+            </summary>
+            <param name="message">the text that is shown in the popup window</param>
+            <param name="value">the integer that is entered by the user. The content of "value" 
+            before calling the function is displayed as default value.</param>
+            <returns>
+            <br>WAIT_NOT_ALLOWED: if wait was called from non-Test, -Snippet or -Waiting Handler code</br>
+            <br>1: the dialog was closed by pressing the button [Ok] (successful call)</br>
+            <br>&lt;0: General error, e.g. by calling outside of a test sequence</br>
+            </returns>
+            
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForInput(System.String,System.Int32,System.Int64@)">
+            <summary>
+            Shows a popup window with the specified question string and waits until the user 
+            has entered an integer or a timeout happens.
+            Function is not allowed in standalone mode and is reported as an error in test system or fail in case of 2-valued verdict concept.
+            </summary>
+            <param name="message">the text that is shown in the popup window. </param>
+            <param name="value">the integer that is entered by the user. The content of "value" 
+            before calling the function is displayed as default value.</param>
+            <param name="maxTime">the maximum time to wait, in milliseconds.</param>
+            <returns>
+            <br>WAIT_TIMEOUT: a timeout occurred </br>
+            <br>WAIT_NOT_ALLOWED: if wait was called from non-Test, -Snippet or -Waiting Handler code</br>
+            <br>1: the dialog was closed by pressing the button [Ok] (successful call)</br>
+            <br>&lt;0: General error, e.g. by calling outside of a test sequence</br>
+            </returns>
+            
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForInput(System.String,System.Double@)">
+            <summary>
+            Shows a popup window with the specified question string and waits until the user 
+            has entered an double value.
+            Function is not allowed in standalone mode and is reported as an error in test system or fail in case of 2-valued verdict concept.
+            </summary>
+            <param name="message">the text that is shown in the popup window</param>
+            <param name="value">the double that is entered by the user. The content of "value" 
+            before calling the function is displayed as default value.</param>
+            <returns>
+            <br>WAIT_NOT_ALLOWED: if wait was called from non-Test, -Snippet or -Waiting Handler code</br>
+            <br>1: the dialog was closed by pressing the button [Ok] (successful call)</br>
+            <br>&lt;0: General error, e.g. by calling outside of a test sequence</br>
+            </returns>
+            
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForInput(System.String,System.Int32,System.Double@)">
+            <summary>
+            Shows a popup window with the specified question string and waits until the user 
+            has entered a double value or a timeout happens.
+            Function is not allowed in standalone mode and is reported as an error in test system or fail in case of 2-valued verdict concept.
+            </summary>
+            <param name="message">the text that is shown in the popup window. </param>
+            <param name="value">the double that is entered by the user. The content of "value" 
+            before calling the function is displayed as default value.</param>
+            <param name="maxTime">the maximum time to wait, in milliseconds.</param>
+            <returns>
+            <br>WAIT_TIMEOUT: a timeout occurred</br>
+            <br>WAIT_NOT_ALLOWED: if wait was called from non-Test, -Snippet or -Waiting Handler code</br>
+            <br>1: the dialog was closed by pressing the button [Ok] (successful call)</br>
+            <br>&lt;0: General error, e.g. by calling outside of a test sequence</br>
+            </returns>
+            
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitUntilEnd">
+            <summary>
+            Waits for the end of the measurement. As the final command within a test module/test unit, this function 
+            can be used to keep the test module/test unit and therefore the monitoring of constraints and conditions 
+            active. With measurement end this wait condition can be resolved. The test result and therefore 
+            also the report are not negatively impacted by the end of the measurement, if the test module/test unit 
+            does not contain any further wait commands after this one.
+            </summary>
+            <returns>
+            <br>WAIT_NOT_ALLOWED: if wait was called from non-Test, -Snippet or -Waiting Handler code</br>
+            <br>1: measurement was stopped</br>
+            <br>&lt;0: General error, e.g. by calling outside of a test sequence </br>
+            </returns>
+            
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitUntilEnd(System.Int32)">
+            <summary>
+            Waits for the end of the measurement. As the final command within a test module/test unit, this function 
+            can be used to keep the test module/test unit and therefore the monitoring of constraints and conditions 
+            active. With measurement end or an timeout this wait condition can be resolved. The test result 
+            and therefore also the report are not negatively impacted by the end of the measurement, if the 
+            test module/test unit does not contain any further wait commands after this one.
+            </summary>
+            <param name="maxTime">the maximum time to wait, in milliseconds.</param>
+            <returns>
+            <br>WAIT_TIMEOUT: a timeout occurred</br>
+            <br>WAIT_NOT_ALLOWED: if wait was called from non-Test, -Snippet or -Waiting Handler code</br>
+            <br>1: measurement ended</br>
+            <br>&lt;0: General error, e.g. by calling outside of a test sequence  </br>      
+            </returns>
+            
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForSyscall(System.String,System.String,System.Int64,System.Int32)">
+            <summary>
+            This function can be used to start an external application and to check its 
+            exit code. Once the application has been started successfully the system 
+            waits for it to exit. The waiting time is limited by the timeout. The result 
+            depends on whether the application's exit code matches the specified expected value.
+            You should either use the absolute path to the external application or use 
+            the call with the declaration of the working directory. To keep the configuration 
+            independent of installation paths on a concrete PC you can use "workingDir" alternatively 
+            to reference an environment variable of the target system, e.g. %MYAPP_DIR%.
+            </summary>
+            <param name="workingDir"> The working directory for the external application.</param>
+            <param name="commandLine"> The command line for the application including any 
+            parameters which might be required. Path names or parameters containing blank spaces 
+            must be enclosed in quotation marks (as an escape sequence \").</param>
+            <param name="exitCode"> The expected exit code for the application. If the application 
+            is exited within the wait time, the result of the call will also depend on whether it 
+            was exited with this exit code.</param>
+            <param name="maxTime"> The maximum wait time in milliseconds at the end of which the 
+            application is expected to exit.</param>
+            <returns><br>1: The application exited with the expected exit code.</br>
+            <br>WAIT_TIMEOUT: The application did not exit within the wait time.</br>
+            <br>-1: The application could not be started, e.g., due to an error in the command line.</br>
+            <br>-2: The application exited with an exit code other than the one expected.</br>
+            </returns>
+            
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForUserFileSync(System.String,System.Boolean)">
+            <summary>
+            This function is used to trigger synchronization of user files between client and server
+            in a distributed environment. Function is not allowed in standalone mode. Errors are reported as an error in test system or fail in case of 2-valued verdict concept.
+            </summary>
+            <param name="fileName"> The name of the user file to be synchronized (path component is ignored).</param>
+            <param name="isDirectionClientToServer"> If this parameter is set to true the file is synchronized from the client (e.g. CANoe) to the server system.</param>
+            <returns><br>1: The user file was successfully synchronized.</br>
+            <br>-1: General error.</br>
+            <br>-2: The specified user file is not registered.</br>
+            <br>-3: The user file could not be found.</br>
+            <br>-4: Error while reading the source file.</br>
+            <br>-5: Error while writing the destination file.</br>
+            <br>-6: This function is not supported in standalone mode.</br>
+            <br>-7: The file size exceeds the limit for on-line synchronization.</br>
+            </returns>
+            
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForSyscall(System.String,System.String,System.Int64)">
+            <summary>
+            This function can be used to start an external application and to check its 
+            exit code. Once the application has been started successfully the system 
+            waits for it to exit. The result depends on whether the application's exit code 
+            matches the specified expected value.
+            You should either use the absolute path to the external application or use 
+            the call with the declaration of the working directory. To keep the configuration 
+            independent of installation paths on a concrete PC you can use "workingDir" alternatively 
+            to reference an environment variable of the target system, e.g. %MYAPP_DIR%.
+            </summary>
+            <param name="workingDir"> The working directory for the external application.</param>
+            <param name="commandLine"> The command line for the application including any 
+            parameters which might be required. Path names or parameters containing blank spaces 
+            must be enclosed in quotation marks (as an escape sequence \").</param>
+            <param name="exitCode"> The expected exit code for the application. If the application 
+            is exited within the wait time, the result of the call will also depend on whether it 
+            was exited with this exit code.</param>
+            <returns><br>1: The application exited with the expected exit code.</br>
+            <br>-1: The application could not be started, e.g., due to an error in the command line.</br>
+            <br>-2: The application exited with an exit code other than the one expected.</br>
+            </returns>
+            
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForNextCall``2(``0,``1@,System.Int32)">
+            <summary>
+            Waits for a network function call on the given port.
+            </summary>
+            <typeparam name="T">The provider side function port class where a call is expected. This can't be a member port of a reference, only a dereferenced port via the Target property.</typeparam>
+            <typeparam name="U">The associated call context type.</typeparam>
+            <param name="portInstance">An instance of the function port where the call is expected.</param>
+            <param name="call">Returns the context of the call when it occurred.</param>
+            <param name="maxTime">The maximum time to wait, in milliseconds.</param>
+            <returns>result of the wait operation</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForAnswer``2(``0,``1,System.Int32)">
+            <summary>
+            Waits for an answer to a network function call of a specific port.
+            </summary>
+            <typeparam name="T">The consumer side function port class where a call response is expected.</typeparam>
+            <typeparam name="U">The associated call context type.</typeparam>
+            <param name="portInstance">An instance of the function port where the response is expected.</param>
+            <param name="call">The call context as returned by CallAsync operation on the function port class.</param>
+            <param name="maxTime">The maximum time to wait, in milliseconds.</param>
+            <returns>result of the wait operation, containing the call context of the returned function</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForAnswer``1(``0,System.Int32)">
+            <summary>
+            Waits for an answer to a network function call.
+            </summary>
+            <typeparam name="U">The associated call context type.</typeparam>
+            <param name="call">The call context as returned by CallAsync operation on the function port class.</param>
+            <param name="maxTime">The maximum time to wait, in milliseconds.</param>
+            <returns>result of the wait operation, containing the call context of the returned function</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForAllAnswers``2(``0,System.Collections.Generic.IEnumerable{``1},System.Int32)">
+            <summary>
+            Waits for all answers to a set of network function calls at a specific port.
+            </summary>
+            <typeparam name="T">The consumer side function port class where the answer is expected.</typeparam>
+            <typeparam name="U">The associated call context type.</typeparam>
+            <param name="portInstance">An instance of the function port where the response is expected.</param>
+            <param name="calls">The set of call contexts as returned by CallAsync operation on the function port class.</param>
+            <param name="maxTime">The maximum time to wait, in milliseconds.</param>
+            <returns>result of the wait operation, containing the call contexts of the returned functions</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForAllAnswers``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            Waits for all answers to a set of network function calls.
+            </summary>
+            <typeparam name="U">The associated call context type.</typeparam>
+            <param name="calls">The set of call contexts as returned by CallAsync operation on the function port class.</param>
+            <param name="maxTime">The maximum time to wait, in milliseconds.</param>
+            <returns>result of the wait operation, containing the call contexts of the returned functions</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForAnyAnswer``2(``0,System.Collections.Generic.IEnumerable{``1},System.Int32)">
+            <summary>
+            Waits for any answer to a set of network function calls at a specific port.
+            </summary>
+            <typeparam name="T">The consumer side function port class where the answer is expected.</typeparam>
+            <typeparam name="U">The associated call context type.</typeparam>
+            <param name="portInstance">An instance of the function port where the response is expected.</param>
+            <param name="calls">The set of call contexts as returned by CallAsync operation on the function port class.</param>
+            <param name="maxTime">The maximum time to wait, in milliseconds.</param>
+            <returns>result of the wait operation, containing the call context of the returned function</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+        </member>
+        <member name="M:Vector.CANoe.Threading.Execution.WaitForAnyAnswer``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            Waits for any answer to a set of network function calls.
+            </summary>
+            <typeparam name="U">The associated call context type.</typeparam>
+            <param name="calls">The set of call contexts as returned by CallAsync operation on the function port class.</param>
+            <param name="maxTime">The maximum time to wait, in milliseconds.</param>
+            <returns>result of the wait operation, containing the call context of the returned function</returns>
+            <exception cref="T:System.InvalidOperationException">thrown if the method is used
+            in a measurement node</exception>
+        </member>
+    </members>
+</doc>

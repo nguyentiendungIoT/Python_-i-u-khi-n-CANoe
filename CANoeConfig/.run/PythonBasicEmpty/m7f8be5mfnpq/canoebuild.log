@@ -1,0 +1,8 @@
+"8:51:33.450";"Starting build";"mode = make"
+"8:51:33.495";"Load test unit";""
+"8:51:33.635";"Transformation of test system variables";""
+"8:51:33.683";"Initialization of parameter scopes";""
+"8:51:33.935";"Compilation of VTT";"D:\project\CANoe\Sample Configurations 17.5.5\Programming\Python\CANoeConfig\.run\PythonBasicEmpty\m7f8be5mfnpq\Tests.vtt"
+"8:51:34.386";"Compile CAPL file";"D:\project\CANoe\Sample Configurations 17.5.5\Programming\Python\CANoeConfig\.run\PythonBasicEmpty\m7f8be5mfnpq\Tests.vxtx.can"
+"8:51:34.979";"Load VTT Tree";"D:\project\CANoe\Sample Configurations 17.5.5\Programming\Python\CANoeConfig\.run\PythonBasicEmpty\m7f8be5mfnpq\Tests.vtt"
+"8:51:34.988";"Build finished";"result = OK"

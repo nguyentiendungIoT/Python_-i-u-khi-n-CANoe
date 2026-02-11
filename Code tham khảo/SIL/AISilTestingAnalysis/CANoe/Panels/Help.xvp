@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=16.0.122.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=16.0.122.0, Culture=neutral, PublicKeyToken=null" Name="Panel1" Children="Controls" ControlName="Help">
+    <Object Type="Vector.CANalyzer.Panels.Design.PanelHelpControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.122.0, Culture=neutral, PublicKeyToken=null" Name="PanelHelpControl1" Children="Controls" ControlName="File Button">
+      <Property Name="Name">PanelHelpControl1</Property>
+      <Property Name="Size">40, 40</Property>
+      <Property Name="Location">10, 10</Property>
+      <Property Name="Image">iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAANRSURBVFhH7VY/aBNRGL+hg0MGh4wdHDp07ODg4ODYoYODg0OHYu6qlIAVihSsUOwgolAhiIJIkYoipSgqiBRUyBDvLjHY1lpaa2pTjVptrEmtNsbP7/fyrlyex+USOuYHH3fce/f93vf/aU00URf6ZkNaxOrWDHtci5hxLWJnhBhWQjPMCf6ma73JsNy9iwCxYQ+Houmt7hvvaDzxlRJLRUqvbNLM6k+yl4s0kVwn/WaGwtF0SdPN2O4dpNfcz+TZrtiCIBy6v0ptZ6aJv1VJ6+lX1H93RezpGcvwt0SePdIptTQIwzoKq2NPPwsLw6fS/xGrEoqmaGe/8IbVL7XVCbYc5ImlAh259taTzE8OXZoX3oBnOCRdUmtAVGKehSUqefvZGbpjfaO1QomAwq+yyAHsVUNz4Pwc3UvnSesxC5r+olVqDwBOOMQcbnQrPHFrmba2y4LYC6XyX5EH7n8uPslR9PZ7vI9J7TXA1sP1cJ875h3nXgsCB8/mf9Dwgw/C8vzmH/m1Ahze+W9PX4rsTLESikiqTbL4gOscpYZsd5RAYImDq8+/VK3tG5wWoXCAQ7nXd/Tp5pBk8QE3GdS5Gk94YGpuQ8QUVrnX4Cm3d0anPlWtozLwr2heNcGb0GTcCvwEyuOLBUldASpA3YdE5WdWsviAWyviryrwEnjCTQ4vDE5mPfciZ/aefEmSxQd8yqAHuB5fk9RE2fXfdPDCG899EBxAJHVN8GAJEoLOywuSmujx7PeKdR77HBEh0O2cZPEBTzXUvygbD0WOONajIalJqQrW4QE+gC1ZfMAjFVNNbSiqYOCgKdXaBzl8ZZFGHn3k9+SIZPEBj1EMEeQBMtxLYT3ScjwpEhUtnPtAh2SpAZ7nsFBtKG5BW8ZdYGDCO+sdwTo6JufWQ6k9AHCZ4HmOXPCqaQiyHkAb9lqHwGrEvuVYssQ626X2gODLBEKB7MVUU5XDstzGtrSueg0CcswA4Xpc1RqCYQ2gGtB+MQtqZTsEMcfhYLkgN+xRqa1B4DLB8xwjFRZhsHglJw6HbEfCwSvC7Q1brgKXCZ7n8AamGgYLbkqwEoIw4YlSq1jNCVd3zIMA8xwjFVONWza6n2iv6HBoMqjzwKXWRBOApv0DNybKieqb6LAAAAAASUVORK5CYII=</Property>
+      <Property Name="Filename">CANoeCANalyzer.chm</Property>
+      <Property Name="WorkingDirectory">
+      </Property>
+      <Property Name="Arguments">AISilTestingAnalysis.cfg</Property>
+      <Property Name="Text">
+      </Property>
+      <Property Name="ImageFile">Bitmaps\PanelHelp.png</Property>
+      <Property Name="TabIndex">2</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.122.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl1" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl1</Property>
+      <Property Name="Size">192, 26</Property>
+      <Property Name="Location">56, 17</Property>
+      <Property Name="BackColor">215, 228, 242</Property>
+      <Property Name="Text">Press the button to open a detailed
+description of this sample configuration.</Property>
+    </Object>
+    <Property Name="Name">Panel1</Property>
+    <Property Name="Size">326, 60</Property>
+    <Property Name="BackColor">215, 228, 242</Property>
+  </Object>
+</Panel>

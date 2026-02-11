@@ -1,0 +1,31 @@
+version 1.4;
+
+import module "SilKit";
+
+namespace RoomTemperatureControl
+{
+  enum State
+  {
+    OFF,
+    ON
+  }
+  
+  [Binding="SilKit"]
+  interface ISensor
+  {
+    provided data double Temperature;
+  }
+
+  [Binding="SilKit"]
+  interface IHeating
+  {
+    consumed data State CoolingState;
+    consumed data State HeatingState;
+  }
+
+  object Sensor1 : ISensor;
+  object Sensor2 : ISensor;
+  object Sensor3 : ISensor;
+
+  object Heating : IHeating;
+}

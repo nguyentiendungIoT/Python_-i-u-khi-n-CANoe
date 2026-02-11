@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=16.0.122.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=16.0.122.0, Culture=neutral, PublicKeyToken=null" Name="Panel" Children="Controls" ControlName="SUT Hint">
+    <Object Type="Vector.CANalyzer.Panels.Design.PanelHelpControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.122.0, Culture=neutral, PublicKeyToken=null" Name="PanelHelpControl1" Children="Controls" ControlName="File Button 1">
+      <Property Name="Name">PanelHelpControl1</Property>
+      <Property Name="Size">41, 40</Property>
+      <Property Name="Location">267, 14</Property>
+      <Property Name="Image">iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABgSURBVDhPY6Aq6O/v/48HX+/q6pKAKsUOQAqxAZD4gQMHCBuCzwAQIGgIIQNAAGYIVAsqgClkmIHAIAASR8dQLagAJEEMIGgAsgvQMQiMuoAeLiAE8BpALIZqoRQwMAAA+47s28bCLe0AAAAASUVORK5CYII=</Property>
+      <Property Name="Filename">gitRepoUrl.bat</Property>
+      <Property Name="WorkingDirectory">
+      </Property>
+      <Property Name="Text">
+      </Property>
+      <Property Name="TabIndex">5</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.122.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl1" Children="Controls" ControlName="Static Text 1">
+      <Property Name="Name">StaticTextControl1</Property>
+      <Property Name="Size">255, 59</Property>
+      <Property Name="Location">3, 5</Property>
+      <Property Name="Text">For this sample configuration a running SUT with an AI is expected. Please visit  https://github.com/vectorgrp/AI-SUT-Demo to download sample SUTs.
+</Property>
+    </Object>
+    <Property Name="Name">Panel</Property>
+    <Property Name="Size">326, 71</Property>
+    <Property Name="BackColor">White</Property>
+  </Object>
+</Panel>

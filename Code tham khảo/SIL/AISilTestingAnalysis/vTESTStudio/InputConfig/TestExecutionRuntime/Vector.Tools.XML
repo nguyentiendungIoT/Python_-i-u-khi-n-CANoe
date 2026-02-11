@@ -1,0 +1,228 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Vector.Tools</name>
+    </assembly>
+    <members>
+        <member name="T:Vector.Tools.Output">
+            <summary>
+            You may output text into the Write window of the tools through 
+            the WriteLine method of this class.
+            </summary>
+        </member>
+        <member name="M:Vector.Tools.Output.WriteLine(System.String)">
+            <summary>
+            Writes the given text to the Write window of the tools.
+            </summary>
+            <param name="text">Text to be written</param>
+        </member>
+        <member name="M:Vector.Tools.Output.WriteLine(System.String,System.String)">
+            <summary>
+            Writes the given text to the specified tab of the Write window of the tools.
+            If the tab doesn't exist yet, it is created.
+            </summary>
+            <param name="text">Text to be written</param>
+            <param name="tab">Name of the tab</param>
+        </member>
+        <member name="M:Vector.Tools.Output.WriteLine(System.String,System.Object[])">
+            <summary>
+            Writes the given text to the Write window of the tools.
+            </summary>
+            <param name="text">text including format specifiers</param>
+            <param name="args">An object array containing the objects to output used in text parameter</param>
+        </member>
+        <member name="M:Vector.Tools.Output.WriteLine(System.String,System.String,System.Object[])">
+            <summary>
+            Writes the given text to the specified tab of the Write window of the tools.
+            If the tab doesn't exist yet, it is created.
+            </summary>
+            <remarks>
+            If the tab doesn't exist yet, it is created.
+            </remarks>
+            <param name="tab">Name of the tab</param>
+            <param name="text">text including format specifiers</param>
+            <param name="args">An object array containing the objects to output used in text parameter</param>
+        </member>
+        <member name="M:Vector.Tools.Output.LogLine(System.String)">
+            <summary>
+            Writes the given text as a comment line into ASCII log files. I.e., 
+            before the text, comment characters ("//") and a timestamp are written.
+            </summary>
+            <remarks>
+            If no ASCII logging is active, has no effect.
+            </remarks>
+            <param name="text">Text to be written</param>
+        </member>
+        <member name="M:Vector.Tools.Output.LogLineRaw(System.String)">
+            <summary>
+            Writes the given text into ASCII log files. In contrast to LogLine, no
+            comment characters and not timestamp is written.
+            </summary>
+            <remarks>
+            If no ASCII logging is active, has no effect.
+            </remarks>
+            <see cref="M:Vector.Tools.Output.LogLine(System.String)"/>
+            <param name="text">Text to be written</param>
+        </member>
+        <member name="M:Vector.Tools.Output.Clear">
+            <summary>
+            Clears all content of the Write window of the tools.
+            </summary>
+        </member>
+        <member name="M:Vector.Tools.Output.Clear(System.String)">
+            <summary>
+            Clears the specified tab of the Write window of the tools.
+            </summary>
+            <remarks>
+            Has no effect if such a tab doesn't exist.
+            </remarks>
+            <param name="tab">Name of the tab</param>
+        </member>
+        <member name="T:Vector.Tools.Measurement">
+            <summary>
+            Provides access to the running measurement / simulation in the tools.
+            </summary>
+        </member>
+        <member name="P:Vector.Tools.Measurement.CurrentTime">
+            <summary>
+            Returns the current measurement / simulation time. The time is returned
+            as a time span, i.e. the time difference between now and the start of
+            the measurement.
+            </summary>
+        </member>
+        <member name="M:Vector.Tools.Measurement.Start">
+            <summary>
+            Starts the simulation / the measurement.
+            </summary>
+            <remarks>
+            In CANoe, has no effect, since
+            the simulation has already been started when your code is called.
+            </remarks>
+        </member>
+        <member name="M:Vector.Tools.Measurement.Stop">
+            <summary>
+            Stops the simulation / the measurement.
+            </summary>
+        </member>
+        <member name="P:Vector.Tools.Measurement.IsRunning">
+            <summary>
+            Returns whether the simulation / the measurement is currently running.
+            </summary>
+            <remarks>
+            In CANoe, returns true except during the methods Initialize and 
+            Shutdown of an IMeasurementScript.
+            </remarks>
+        </member>
+        <member name="P:Vector.Tools.Measurement.StartTime">
+            <summary>
+            Returns the measurement / simulation start time. The time is returned
+            as a date time.
+            </summary>
+        </member>
+        <member name="T:Vector.Tools.ElapsedEventArgs">
+            <summary>
+            Arguments for the elapsed handler of a timer.
+            </summary>
+            <seealso cref="T:Vector.Tools.Timer"/>
+        </member>
+        <member name="P:Vector.Tools.ElapsedEventArgs.Time">
+            <summary>
+            Returns the time (relative to the measurement start) at which the 
+            timer elapsed.
+            </summary>
+        </member>
+        <member name="P:Vector.Tools.ElapsedEventArgs.State">
+            <summary>
+            Returns the state which was given to the timer. Through this, you
+            can pass parameters to your handler.
+            </summary>
+        </member>
+        <member name="T:Vector.Tools.Timer">
+            <summary>
+            A simple timer class. The delegate will be called after the internal system
+            time in the tool has passed the specified interval.
+            </summary>
+            <remarks>
+            The interval is counted from the start of the timer. You have to start
+            the timer explicitly. Please call Dispose on the timer when you don't
+            need it anymore.
+            </remarks>
+        </member>
+        <member name="M:Vector.Tools.Timer.#ctor(System.EventHandler{Vector.Tools.ElapsedEventArgs})">
+            <summary>
+            Constructor. Interval is set to 10 milliseconds.
+            </summary>
+            <param name="handler">The callback delegate</param>
+        </member>
+        <member name="M:Vector.Tools.Timer.#ctor(System.TimeSpan,System.EventHandler{Vector.Tools.ElapsedEventArgs})">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="interval">Interval after which the delegate will be called.
+            Note that the timer must be explicitly started (with Start()).
+            </param>
+            <param name="handler">The callback delegate</param>
+        </member>
+        <member name="M:Vector.Tools.Timer.#ctor(System.TimeSpan,System.EventHandler{Vector.Tools.ElapsedEventArgs},System.Object)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="interval">Interval after which the delegate will be called.
+            Note that the timer must be explicitly started (with Start()).</param>
+            <param name="handler">The callback delegate</param>
+            <param name="state">Object given back when the timer elapses.</param>
+        </member>
+        <member name="M:Vector.Tools.Timer.Dispose">
+            <summary>
+            Disposes the timer, frees internal resources.
+            </summary>
+        </member>
+        <member name="E:Vector.Tools.Timer.Elapsed">
+            <summary>
+            Event which is raised when the timer elapses.
+            </summary>
+        </member>
+        <member name="M:Vector.Tools.Timer.Start">
+            <summary>
+            Starts the timer.
+            </summary>
+            <remarks>
+            After the specified interval is passed, the callback
+            will be called. If the AutoReset property is true, the timer will then
+            be reset and restarted automatically.
+            </remarks>
+        </member>
+        <member name="M:Vector.Tools.Timer.Stop">
+            <summary>
+            Stops the timer. The callback will not be called again.
+            </summary>
+        </member>
+        <member name="P:Vector.Tools.Timer.AutoReset">
+            <summary>
+            Determines if the timer is automatically reset and restarted after it was due.
+            </summary>
+            <remarks>
+            The default is true.
+            </remarks>
+        </member>
+        <member name="P:Vector.Tools.Timer.Enabled">
+            <summary>
+            Determines if the timer is currently enabled. Disabled timers do not call the callback.
+            </summary>
+            <remarks>
+            The default is true.
+            </remarks>
+        </member>
+        <member name="P:Vector.Tools.Timer.Interval">
+            <summary>
+            The interval after which the timer is due.
+            </summary>
+        </member>
+        <member name="P:Vector.Tools.Timer.State">
+            <summary>
+            A generic parameter which is given to the event handler(s) when 
+            the timer elapses.
+            </summary>
+        </member>
+    </members>
+</doc>

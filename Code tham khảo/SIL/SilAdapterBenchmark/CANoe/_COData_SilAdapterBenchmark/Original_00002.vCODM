@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FunctionBusLibrary Version="3" FormatMajorVersion="3">
+  <Namespaces>
+    <Namespace IsDefinedAsHidden="False" IsSystemDefined="False" Name="PerformanceMeasurement">
+      <Subnamespaces>
+        <Namespace IsDefinedAsHidden="False" IsSystemDefined="False" Name="_Internal">
+          <DataTypes>
+            <IntegerDataType IsSigned="False" BitCount="1" HasFixedBinaryLayout="True" HasMotorolaByteOrder="False" Name="Bool" />
+          </DataTypes>
+        </Namespace>
+      </Subnamespaces>
+      <DOInterfaces>
+        <DOInterface IsAbstract="False" Name="IPingPong">
+          <AttributeValues>
+            <AttributeValue Definition="_SystemAttributes::Binding" InitialValue="SilKit" InitialValueType="String" />
+          </AttributeValues>
+          <MemberData>
+            <DOMemberDataHolder Name="MemberData" />
+          </MemberData>
+          <DataMembers>
+            <DOIFDataMember LocalDirection="Consumed" Name="Ping">
+              <DataType DataType="_SystemDataTypes::Bytes" />
+            </DOIFDataMember>
+            <DOIFDataMember Name="Pong">
+              <DataType DataType="_SystemDataTypes::Bytes" />
+            </DOIFDataMember>
+          </DataMembers>
+        </DOInterface>
+        <DOInterface IsAbstract="False" Name="IMsgSize">
+          <AttributeValues>
+            <AttributeValue Definition="_SystemAttributes::Binding" InitialValue="SilKit" InitialValueType="String" />
+          </AttributeValues>
+          <MemberData>
+            <DOMemberDataHolder Name="MemberData">
+              <Data>
+                <DOIFMemberData Name="Value">
+                  <InitialValues>
+                    <InitialValue Value="10000" ValueType="UInt32" />
+                  </InitialValues>
+                </DOIFMemberData>
+              </Data>
+            </DOMemberDataHolder>
+          </MemberData>
+          <DataMembers>
+            <DOIFDataMember Name="Value">
+              <DataType DataType="_SystemDataTypes::UInt32" />
+            </DOIFDataMember>
+          </DataMembers>
+        </DOInterface>
+        <DOInterface IsAbstract="False" Name="IMeasurementState">
+          <AttributeValues>
+            <AttributeValue Definition="_SystemAttributes::Binding" InitialValue="SilKit" InitialValueType="String" />
+          </AttributeValues>
+          <MemberData>
+            <DOMemberDataHolder Name="MemberData">
+              <Data>
+                <DOIFMemberData Name="IsMeasurementRunning">
+                  <InitialValues>
+                    <InitialValue Value="0" ValueType="UInt32" />
+                  </InitialValues>
+                </DOIFMemberData>
+              </Data>
+            </DOMemberDataHolder>
+          </MemberData>
+          <DataMembers>
+            <DOIFDataMember Name="IsMeasurementRunning">
+              <DataType DataType="PerformanceMeasurement::_Internal::Bool">
+                <NumericProperties MinValue="" MinValueType="Invalid" MaxValue="" MaxValueType="Invalid" IsBoolean="True" IsTimespan="False" />
+              </DataType>
+            </DOIFDataMember>
+          </DataMembers>
+        </DOInterface>
+        <DOInterface IsAbstract="False" Name="IResult">
+          <AttributeValues>
+            <AttributeValue Definition="_SystemAttributes::Binding" InitialValue="SilKit" InitialValueType="String" />
+          </AttributeValues>
+          <MemberData>
+            <DOMemberDataHolder Name="MemberData">
+              <Data>
+                <DOIFMemberData Name="Performance">
+                  <InitialValues>
+                    <InitialValue MemberPath=".Latency" Value="0" ValueType="Double" />
+                    <InitialValue MemberPath=".LatencyMean" Value="0" ValueType="Double" />
+                    <InitialValue MemberPath=".Throughput" Value="0" ValueType="Double" />
+                    <InitialValue MemberPath=".ThroughputMean" Value="0" ValueType="Double" />
+                  </InitialValues>
+                </DOIFMemberData>
+              </Data>
+            </DOMemberDataHolder>
+          </MemberData>
+          <DataMembers>
+            <DOIFDataMember LocalDirection="Consumed" Name="Performance">
+              <DataType DataType="PerformanceMeasurement::PerformanceData" />
+            </DOIFDataMember>
+          </DataMembers>
+        </DOInterface>
+      </DOInterfaces>
+      <DistributedObjects>
+        <DistributedObject GenerateDotNetAPI="True" Name="PingPong">
+          <DataType>
+            <ModifiedDOIF Reverse="False" IsDOReference="False" Interface="PerformanceMeasurement::IPingPong" />
+          </DataType>
+          <MemberData>
+            <DOMemberDataHolder Name="MemberData" />
+          </MemberData>
+        </DistributedObject>
+        <DistributedObject GenerateDotNetAPI="True" Name="MsgSize">
+          <DataType>
+            <ModifiedDOIF Reverse="False" IsDOReference="False" Interface="PerformanceMeasurement::IMsgSize" />
+          </DataType>
+          <MemberData>
+            <DOMemberDataHolder Name="MemberData" />
+          </MemberData>
+        </DistributedObject>
+        <DistributedObject GenerateDotNetAPI="True" Name="MeasurementState">
+          <DataType>
+            <ModifiedDOIF Reverse="False" IsDOReference="False" Interface="PerformanceMeasurement::IMeasurementState" />
+          </DataType>
+          <MemberData>
+            <DOMemberDataHolder Name="MemberData" />
+          </MemberData>
+        </DistributedObject>
+        <DistributedObject GenerateDotNetAPI="True" Name="Result">
+          <DataType>
+            <ModifiedDOIF Reverse="False" IsDOReference="False" Interface="PerformanceMeasurement::IResult" />
+          </DataType>
+          <MemberData>
+            <DOMemberDataHolder Name="MemberData" />
+          </MemberData>
+        </DistributedObject>
+      </DistributedObjects>
+      <DataTypes>
+        <StructDataType Bitcount="0" RawBitcount="0" HasFixedBinaryLayout="False" HasMotorolaByteOrder="False" Name="PerformanceData">
+          <Fields>
+            <DataTypeField RelativeBitOffset="0" IsOptional="False" IsHidden="False" Name="Latency">
+              <DataType DataType="_SystemDataTypes::Double" />
+            </DataTypeField>
+            <DataTypeField RelativeBitOffset="0" IsOptional="False" IsHidden="False" Name="LatencyMean">
+              <DataType DataType="_SystemDataTypes::Double" />
+            </DataTypeField>
+            <DataTypeField RelativeBitOffset="0" IsOptional="False" IsHidden="False" Name="Throughput">
+              <DataType DataType="_SystemDataTypes::Double" />
+            </DataTypeField>
+            <DataTypeField RelativeBitOffset="0" IsOptional="False" IsHidden="False" Name="ThroughputMean">
+              <DataType DataType="_SystemDataTypes::Double" />
+            </DataTypeField>
+          </Fields>
+        </StructDataType>
+      </DataTypes>
+    </Namespace>
+  </Namespaces>
+  <ModuleDependencies>
+    <ModuleDependency Module="SilKit" />
+  </ModuleDependencies>
+</FunctionBusLibrary>

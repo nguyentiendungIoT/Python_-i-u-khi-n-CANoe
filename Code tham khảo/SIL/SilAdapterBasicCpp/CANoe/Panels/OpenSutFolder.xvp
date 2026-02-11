@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=17.0.128.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=17.0.128.0, Culture=neutral, PublicKeyToken=null" Name="Panel" Children="Controls" ControlName="Open SUT Folder">
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.0.128.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl2" Children="Controls" ControlName="Static Text 2">
+      <Property Name="Name">StaticTextControl2</Property>
+      <Property Name="Size">313, 43</Property>
+      <Property Name="Location">10, 6</Property>
+      <Property Name="BackColor">215, 228, 242</Property>
+      <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+      <Property Name="TextAlign">MiddleLeft</Property>
+      <Property Name="Text">The software under test is not started automatically. Start the executable from the file system.</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.PanelHelpControl, Vector.CANalyzer.Panels.CommonControls, Version=17.0.128.0, Culture=neutral, PublicKeyToken=null" Name="PanelHelpControl1" Children="Controls" ControlName="File Button 1">
+      <Property Name="Name">PanelHelpControl1</Property>
+      <Property Name="Size">51, 42</Property>
+      <Property Name="Location">10, 55</Property>
+      <Property Name="Image">iVBORw0KGgoAAAANSUhEUgAAADAAAAAnCAYAAABJ0cukAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJESURBVFhH7djBcdUwEMbxd6ECKoAGaIAbNyqAChgKgDMcaIELFEAJNEE5nEG/l3wzOxsnDkZ5Zgb/Z3berixb38rySsnp4B/nxbAfw96eo8vya5ixadjEk2E/h70+R5fn0TBj00DLH2PWv1y5u/J12KYV8OHa9mazjqUbnw/7fG0vNQzeDxPj8bBvw7R90jB4Nez7lXvmzTDX9Hu6EHemJkAokYgoMcEgNoktXQehMBnae9yZmkCdyepnYL+EYOk60h7BPe5MTcBs5Q1k5pCBLYe8gaXrqIL173FnagIGIcxS4iOzaPlIjm9NR0y+gSThN2s+y6vGnakJ7MGRwN78vwk4RuxxiOvQ4Dhxb+46RKkSKkYqilj1SCXpMVQssXY8G8ZPFVvbieuhkrYbfBzm6FrNDe+GdVLmkkDfeXtMUBJxD9Ge4TcJJDFxntuhhaauk/Yb3OcYm4EiCqn1Na6i6jW/tR9q38rqG7iNu46xGajvvD22XOobEOO2BJZ24s3H+qWv35IgJLNrOfCJNHiPIRH35MTqPj7L8/INZIlWNlehzTdO5khgb44E9mZqArWCKJeqRqpMLZepOOBr0w+qU6qOKtR35s7UBIhJqVMu1/4GXtqJkwhfm/78iyQQkeBHFOq1JBCRSN/0q9f4eU5nagJmL2+A33feEGFLO3FNIJvdgySwdIw1CKGWEl8yBBEZMYRqs7ygv7Z8F/x8A1k+rjFLrrP5WL/5EDWRtUPlKvnvtKPrpTHrf/Xf6YODg4OH5nT6Df3UwXmhfaw+AAAAAElFTkSuQmCC</Property>
+      <Property Name="Filename">..\OpenSutFolder.bat</Property>
+      <Property Name="WorkingDirectory">
+      </Property>
+      <Property Name="Text">
+      </Property>
+      <Property Name="ImageFile">Bitmaps\SUT.png</Property>
+      <Property Name="ImageAlign">TopCenter</Property>
+      <Property Name="TabIndex">3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.0.128.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl1" Children="Controls" ControlName="Static Text 1">
+      <Property Name="Name">StaticTextControl1</Property>
+      <Property Name="Size">241, 42</Property>
+      <Property Name="Location">67, 55</Property>
+      <Property Name="BackColor">215, 228, 242</Property>
+      <Property Name="TextAlign">MiddleLeft</Property>
+      <Property Name="Text">Press the button to open the folder that contains the software under test written in C++.</Property>
+    </Object>
+    <Property Name="Name">Panel</Property>
+    <Property Name="Size">326, 106</Property>
+    <Property Name="BackColor">215, 228, 242</Property>
+  </Object>
+</Panel>

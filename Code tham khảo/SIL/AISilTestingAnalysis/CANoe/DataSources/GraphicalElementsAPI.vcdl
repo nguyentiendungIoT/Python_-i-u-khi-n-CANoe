@@ -1,0 +1,239 @@
+version 1.4;
+
+namespace _GraphicalElements::DataModel
+{
+  enum EAlignment : uint32
+  {
+	Near = 0,
+	Center = 1,
+	Far = 2,
+  }
+  
+  enum EElementType : uint32
+  {
+	Rectangle = 0,
+	Ellipse = 1,
+	Image = 2,
+	Line = 3
+  }
+  
+  struct Position
+  {
+    uint32 x;
+    uint32 y;
+  }
+  
+  struct Dimension
+  {
+    uint32 width;
+    uint32 height;
+  }
+  
+  struct Padding
+  {
+	uint32 top;
+	uint32 bottom;
+	uint32 left;
+	uint32 right;
+  }
+  
+  struct ElementData
+  {
+  	string container_id;
+	Position position;
+	Dimension dimension;
+	bool visible;
+  }
+  
+  struct ContainerData
+  {
+	Position position;
+	Dimension dimension;
+	string window_name;
+	bool visible;
+  }
+  
+  struct ImageData
+  {
+	bytes raw_data;
+	double opacity;
+  }
+  
+  const ContainerData DefaultContainerData =
+  {
+	position: 
+	{
+		x: 0,
+		y: 0
+	},
+	dimension:
+	{
+		width: 100,
+		height: 100
+	},
+	window_name: "",
+	visible : true
+  };
+  
+  const ElementData DefaultElementData =
+  {
+	container_id: "",
+	position: 
+	{
+		x: 0,
+		y: 0
+	},
+	dimension:
+	{
+		width: 100,
+		height: 100
+	},
+	visible : true
+  };
+  
+  const ShapeData DefaultShapeData =
+  {
+	stroke_size: 2,
+	stroke_color: 
+	{
+		A: 255,
+		R: 0,
+		G: 0,
+		B: 0
+	},
+	fill_color: 
+	{
+		A: 255,
+		R: 255,
+		G: 255,
+		B: 255
+	},
+	text_data:
+	{
+		content: "",
+		text_color: 
+		{
+			A: 255,
+			R: 0,
+			G: 0,
+			B: 0
+		},
+		font_size: 14,
+		v_text_alignment: Center,
+		h_text_alignment: Center,
+		padding:
+		{
+			top: 0,
+			bottom: 0,
+			left: 0,
+			right: 0
+		}
+	}
+	
+  };
+  
+  const LineData DefaultLineData =
+  { 
+	stroke_size: 2,
+	stroke_color: 
+	{
+		A: 255,
+		R: 0,
+		G: 0,
+		B: 0
+	},
+	fill_color: 
+	{
+		A: 255,
+		R: 255,
+		G: 255,
+		B: 255
+	},  
+    x1: 0,
+    y1: 0,
+    x2: 0,
+    y2: 0    
+  };
+  
+  struct TextData
+  {
+	string content;
+	ColorData text_color;
+	uint32 font_size;
+	EAlignment v_text_alignment;  
+	EAlignment h_text_alignment;
+	Padding padding;
+  }
+  
+  struct ColorData
+  {
+	uint8 A;
+	uint8 R;
+	uint8 G;
+	uint8 B;
+  }
+   
+  struct ShapeData
+  {
+	uint32 stroke_size;
+	ColorData stroke_color;
+	ColorData fill_color;
+	TextData text_data;
+  }
+  
+  struct LineData
+  {  
+	uint32 stroke_size;
+	ColorData stroke_color;
+	ColorData fill_color;
+	uint32 x1;
+	uint32 y1;
+	uint32 x2;
+	uint32 y2;
+  }
+  
+  interface IGraphicalElementContainer
+  {
+	internal data ContainerData container_data = DefaultContainerData;
+  }
+  
+  interface IGraphicalElement
+  {
+	internal data ElementData element_data = DefaultElementData;
+  }
+  
+  interface IRectangleElement : IGraphicalElement
+  {
+	internal data ShapeData shape_data = DefaultShapeData;
+  }
+  
+  interface IEllipseElement : IGraphicalElement
+  {
+	internal data ShapeData shape_data = DefaultShapeData;
+  }
+  
+  interface IImageElement : IGraphicalElement
+  {
+	internal data ImageData image_data;
+  }
+  
+  interface ILineElement : IGraphicalElement
+  {
+	internal data LineData line_data = DefaultLineData;
+  }
+  
+  interface IGraphicalElementFactory
+  {
+	internal method string GetOrCreateElementContainer(in string id);
+		
+	internal method string GetOrCreateElement(in string id, in string container, in EElementType elementType);
+	
+	internal method bool DeleteElement(in string id, in string container);
+	
+  } 
+}
+
+namespace GraphicalElements
+{
+  object GeFactory : _GraphicalElements::DataModel::IGraphicalElementFactory;
+}

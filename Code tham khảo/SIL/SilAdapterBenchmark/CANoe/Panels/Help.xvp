@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=17.2.1012.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=17.2.1012.0, Culture=neutral, PublicKeyToken=null" Name="Panel1" Children="Controls" ControlName="Help">
+    <Object Type="Vector.CANalyzer.Panels.Design.PanelHelpControl, Vector.CANalyzer.Panels.CommonControls, Version=17.2.1012.0, Culture=neutral, PublicKeyToken=null" Name="PanelHelpControl1" Children="Controls" ControlName="File Button">
+      <Property Name="Name">PanelHelpControl1</Property>
+      <Property Name="Size">40, 40</Property>
+      <Property Name="Location">10, 10</Property>
+      <Property Name="Image">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</Property>
+      <Property Name="Filename">Choose file...</Property>
+      <Property Name="WorkingDirectory">
+      </Property>
+      <Property Name="Arguments">SilAdapterBenchmark.CFG</Property>
+      <Property Name="Text">
+      </Property>
+      <Property Name="ImageFile">Bitmaps\PanelHelp.png</Property>
+      <Property Name="TabIndex">2</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.2.1012.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl1" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl1</Property>
+      <Property Name="Size">192, 26</Property>
+      <Property Name="Location">56, 17</Property>
+      <Property Name="BackColor">215, 228, 242</Property>
+      <Property Name="Text">Press the button to open a detailed
+description of this sample configuration.</Property>
+    </Object>
+    <Property Name="Name">Panel1</Property>
+    <Property Name="Size">326, 60</Property>
+    <Property Name="BackColor">215, 228, 242</Property>
+  </Object>
+</Panel>

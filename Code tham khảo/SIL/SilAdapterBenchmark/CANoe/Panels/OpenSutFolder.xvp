@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=17.2.1012.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=17.2.1012.0, Culture=neutral, PublicKeyToken=null" Name="Panel" Children="Controls" ControlName="Open SUT Folder">
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.2.1012.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl2" Children="Controls" ControlName="Static Text 2">
+      <Property Name="Name">StaticTextControl2</Property>
+      <Property Name="Size">313, 43</Property>
+      <Property Name="Location">10, 6</Property>
+      <Property Name="BackColor">215, 228, 242</Property>
+      <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+      <Property Name="TextAlign">MiddleLeft</Property>
+      <Property Name="Text">The software under test is not started automatically. Start the executable from the file system.</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.PanelHelpControl, Vector.CANalyzer.Panels.CommonControls, Version=17.2.1012.0, Culture=neutral, PublicKeyToken=null" Name="PanelHelpControl1" Children="Controls" ControlName="File Button 1">
+      <Property Name="Name">PanelHelpControl1</Property>
+      <Property Name="Size">51, 42</Property>
+      <Property Name="Location">10, 55</Property>
+      <Property Name="Image">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</Property>
+      <Property Name="Filename">..\OpenSutFolder.bat</Property>
+      <Property Name="WorkingDirectory">
+      </Property>
+      <Property Name="Text">
+      </Property>
+      <Property Name="ImageFile">Bitmaps\SUT.png</Property>
+      <Property Name="ImageAlign">TopCenter</Property>
+      <Property Name="TabIndex">3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.2.1012.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl1" Children="Controls" ControlName="Static Text 1">
+      <Property Name="Name">StaticTextControl1</Property>
+      <Property Name="Size">241, 42</Property>
+      <Property Name="Location">67, 55</Property>
+      <Property Name="BackColor">215, 228, 242</Property>
+      <Property Name="TextAlign">MiddleLeft</Property>
+      <Property Name="Text">Press the button to open the folder that contains the software under test written in C++.</Property>
+    </Object>
+    <Property Name="Name">Panel</Property>
+    <Property Name="Size">326, 106</Property>
+    <Property Name="BackColor">215, 228, 242</Property>
+  </Object>
+</Panel>

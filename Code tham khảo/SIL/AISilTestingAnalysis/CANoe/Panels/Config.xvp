@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=16.0.122.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=16.0.122.0, Culture=neutral, PublicKeyToken=null" Name="Panel" Children="Controls" ControlName="Config">
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.122.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl1" Children="Controls" ControlName="Static Text 1">
+      <Property Name="Name">StaticTextControl1</Property>
+      <Property Name="Size">188, 13</Property>
+      <Property Name="Location">21, 11</Property>
+      <Property Name="Text">Testdata Folder with Ground Truth File</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.PathControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.122.0, Culture=neutral, PublicKeyToken=null" Name="PathControl1" Children="Controls" ControlName="Path Dialog 1">
+      <Property Name="Name">PathControl1</Property>
+      <Property Name="Size">278, 23</Property>
+      <Property Name="Location">21, 40</Property>
+      <Property Name="DlgType">OpenFolder</Property>
+      <Property Name="SymbolConfiguration">8;16;AutomaticTest;;;Sysvar_TestsetPath;4;;;-1;;;;;;0</Property>
+      <Property Name="TabIndex">1</Property>
+    </Object>
+    <Property Name="Name">Panel</Property>
+    <Property Name="Size">321, 76</Property>
+    <Property Name="BackColor">White</Property>
+  </Object>
+</Panel>
