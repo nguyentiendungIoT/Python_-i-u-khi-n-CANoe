@@ -106,8 +106,11 @@ LED_COLORS = {
 }
 
 
-# Resolve logo path relative to this script
-_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+# Resolve resource path: works both in dev and when packaged by PyInstaller
+if getattr(sys, "frozen", False):
+    _SCRIPT_DIR = sys._MEIPASS
+else:
+    _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 LOGO_PATH = os.path.join(_SCRIPT_DIR, "YuRa.png")
 
 
@@ -1060,9 +1063,25 @@ class CANoeWorker(QObject):
     def cleanup(self):
         try:
             if self._write_poll_timer:
-                self._write_poll_timer.stop()
+                try:
+                    if self._write_poll_timer.isActive():
+                        self._write_poll_timer.stop()
+                except RuntimeError:
+                    pass
+                try:
+                    self._write_poll_timer.deleteLater()
+                except RuntimeError:
+                    pass
             if self._pump_timer:
-                self._pump_timer.stop()
+                try:
+                    if self._pump_timer.isActive():
+                        self._pump_timer.stop()
+                except RuntimeError:
+                    pass
+                try:
+                    self._pump_timer.deleteLater()
+                except RuntimeError:
+                    pass
             if self._connected and self._meas_com:
                 try:
                     if self._meas_com.Running:
@@ -2184,12 +2203,24 @@ class MainWindow(QMainWindow):
 
     def closeEvent(self, event):
         self._save_paths()
-        if self._schedule_timer:
-            self._schedule_timer.stop()
-        if self._countdown_timer:
-            self._countdown_timer.stop()
-        if self._elapsed_timer:
-            self._elapsed_timer.stop()
+        # Don't process signals during cleanup to avoid cross-thread issues
+        self.blockSignals(True)
+        # Stop timers safely
+        try:
+            if self._schedule_timer and self._schedule_timer.isActive():
+                self._schedule_timer.stop()
+        except RuntimeError:
+            pass
+        try:
+            if self._countdown_timer and self._countdown_timer.isActive():
+                self._countdown_timer.stop()
+        except RuntimeError:
+            pass
+        try:
+            if self._elapsed_timer and self._elapsed_timer.isActive():
+                self._elapsed_timer.stop()
+        except RuntimeError:
+            pass
         self.sig_cleanup.emit()
         self._thread.quit()
         if not self._thread.wait(5000):
